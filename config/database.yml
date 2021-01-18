@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: myteacher_production
+  database: myteacher_productions
   username: myteacher
   password: <%= ENV['MYTEACHER_DATABASE_PASSWORD'] %>

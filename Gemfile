@@ -36,6 +36,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Rspec
   gem 'rspec-rails'
+  # factory_bot (テストデータ作成ツール)の導入
+  gem 'factory_bot_rails'
 end
 
 group :development do
