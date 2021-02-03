@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "users/new.html.erb", type: :view do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "Usersが表示されている" do
+    visit new_user_path
+    expect(page).to have_content "Users#new"
+  end
 end
