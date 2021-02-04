@@ -7,8 +7,18 @@ RSpec.describe User, type: :model do
       email:"user@example.com")
   end
 
-  it "名前、メールアドレスがある場合、有効である" do
+  it "name、emailがある場合、有効である" do
     expect(@user).to be_valid
   end
-    
+  
+  it "nameがない場合、無効である" do
+    @user.name = ""
+    expect(@user).not_to be_valid
+  end
+
+  it "emailがない場合、無効である" do
+    @user.email = ""
+    expect(@user).not_to be_valid
+  end
+
 end
