@@ -49,5 +49,11 @@ RSpec.describe User, type: :model do
     end
   end
 
+  it "同じemailのユーザーが存在する場合、無効である" do
+    duplicate_user = @user.dup
+    @user.save
+    expect(@user).to_not be_valid
+  end
+
 
 end
