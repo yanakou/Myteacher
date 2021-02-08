@@ -56,5 +56,15 @@ RSpec.describe User, type: :model do
     expect(duplicate_user).to_not be_valid
   end
 
+  it "パスワードが空の場合、無効である" do
+    @user.password = @user.password_confirmation = ""*6
+    expect(@user).to_not be_valid
+  end
+
+  it "パスワードが5文字以下の場合、無効である" do
+    @user.password = @user.password_confirmation = "a"*5
+    expect(@user).to_not be_valid
+  end
+
 
 end
