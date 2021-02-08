@@ -31,4 +31,13 @@ RSpec.describe User, type: :model do
     expect(@user).not_to be_valid
   end
 
+  it "emailのフォーマットが正しい場合、有効である" do
+    valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org 
+      first.last@foo.jp alice+bob@baz.cn]
+    valid_addresses.each do |valid_address|
+      @user.email = valid_address
+      expect(@user).to be_valid, "#{valid_address.inspect} should be valid"
+    end
+  end
+
 end
