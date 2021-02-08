@@ -6,6 +6,9 @@ ruby '2.6.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3'
 
+# LESSをSassに変換する
+gem 'bootstrap-sass', '3.4.1'
+
 gem 'dotenv-rails'
 
 #パスワードをハッシュ化するための関数
