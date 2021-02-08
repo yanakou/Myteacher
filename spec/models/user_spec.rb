@@ -4,7 +4,8 @@ RSpec.describe User, type: :model do
   before do
     @user = User.new(
       name:"Example User", 
-      email:"user@example.com")
+      email:"user@example.com",
+      password:"foobar", password_confirmation:"foobar")
   end
 
   it "name、emailがある場合、有効である" do

@@ -8,6 +8,9 @@ gem 'rails', '~> 6.0.3'
 
 gem 'dotenv-rails'
 
+#パスワードをハッシュ化するための関数
+gem 'bcrypt',         '3.1.13'
+
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4'
 # Use Puma as the app server
