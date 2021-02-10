@@ -70,22 +70,42 @@ textarea {
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width:100%;
+  width:40%;
   margin-bottom: 15px;
   @include box_sizing;
 }
 
 input {
   height: auto !important;
+  font-size: 20px;
 }
+
+/*新規登録ページ*/
 
 .btn{
   background-color: rgba(24, 134, 224, 0.863);
   font-weight: bold;
-  font-size: 20px;
+  font-size: 30px;
+  width: 50%;
   &:hover{
     background-color: rgba(11, 89, 206, 0.863);
   }
+}
+
+label{
+  font-size: 20px;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.btn_wrap{
+  text-align: center;
+}
+
+.center{
+  text-align: center;
 }
 
 /* typography */
