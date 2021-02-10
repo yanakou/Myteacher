@@ -6,16 +6,16 @@
       <%= f.label :ニックネーム %>
       <%= f.text_field :name %>
 
-      <%= f.label :email %>
+      <%= f.label :メールアドレス %>
       <%= f.email_field :email %>
 
-      <%= f.label :password %>
+      <%= f.label :パスワード %>
       <%= f.password_field :password %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.label :password_confirmation, "パスワード(再入力)" %>
       <%= f.password_field :password_confirmation %>
 
-      <%= f.submit "Create my account", class: "btn btn-primary" %>
+      <%= f.submit "登録する", class: "btn" %>
     <% end %>
   </div>
 </div>

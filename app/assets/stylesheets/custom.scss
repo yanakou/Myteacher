@@ -79,6 +79,14 @@ input {
   height: auto !important;
 }
 
+.btn{
+  background-color: rgba(24, 134, 224, 0.863);
+  font-weight: bold;
+  font-size: 20px;
+  &:hover{
+    background-color: rgba(11, 89, 206, 0.863);
+  }
+}
 
 /* typography */
 
