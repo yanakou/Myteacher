@@ -6,4 +6,13 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
+
+  def create
+    @user = User.new(user_params)    # 実装は終わっていないことに注意!
+    if @user.save
+      # 保存の成功をここで扱う。
+    else
+      render 'new'
+    end
+  end
 end
