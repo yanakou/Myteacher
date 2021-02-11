@@ -3,32 +3,33 @@
 <div class="row">
   
     <%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'shared/error_messages' %>
       <div class="text-center">
       <%= f.label :ニックネーム %>
       </div>
       <div class="center">
-      <%= f.text_field :name %>
+      <%= f.text_field :name, class: 'form-control' %>
       </div>
       
       <div class="text-center">
       <%= f.label :メールアドレス %>
       </div>
       <div class="center">
-      <%= f.email_field :email %>
+      <%= f.email_field :email, class: 'form-control' %>
       </div>
 
       <div class="text-center">
       <%= f.label :パスワード %>
       </div>
       <div class="center">
-      <%= f.password_field :password %> 
+      <%= f.password_field :password, class: 'form-control' %> 
       </div>
 
       <div class="text-center">
       <%= f.label :password_confirmation, "パスワード(再入力)" %>
       </div>
       <div class="center">
-      <%= f.password_field :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
       </div>
 
       <div class="btn_wrap">
