@@ -44,6 +44,8 @@ group :development, :test do
   gem 'rspec-rails'
   # factory_bot (テストデータ作成ツール)の導入
   gem 'factory_bot_rails'
+  # render_templateを使うために必要
+  gem 'rails-controller-testing'
 end
 
 group :test do
