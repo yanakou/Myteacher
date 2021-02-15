@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
       email:"user@example.com",
       password:"foobar", password_confirmation:"foobar")
   end
-
+  
   it "name、emailがある場合、有効である" do
     expect(@user).to be_valid
   end
