@@ -4,6 +4,7 @@ RSpec.describe "UsersSignup", type: :request do
   describe "無効なユーザー登録" do
     it "ユーザー数は変わらない" do
       get signup_path
+      expect(response.body).to include "ニックネーム"
       expect do
       post users_path, params:{user: {name:  "",
                               email: "user@invalid",
