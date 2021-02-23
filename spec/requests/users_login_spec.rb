@@ -18,8 +18,17 @@ RSpec.describe "UsersLogin", type: :request do
     # assert_select "a[href=?]", user_path(@user)
   end
 
+  it "有効なアドレスと無効なパスワードでログイン失敗する" do
+    get login_path
+    expect(response).to render_template("sessions/new")
+    post login_path, params: { session: { email: "user@example.com", password: "" } }
+    expect(response).to render_template("sessions/new")
+    expect(flash).not_to be_empty
+    get root_path
+    expect(flash).to be_empty
+  end
 
-  it "無効なユーザーでログイン失敗する" do
+  it "無効なアドレスとパスワードでログイン失敗する" do
     get login_path
     expect(response).to render_template("sessions/new")
     post login_path, params: { session: { email: "", password: "" } }
