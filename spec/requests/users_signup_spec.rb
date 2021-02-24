@@ -27,6 +27,7 @@ RSpec.describe "UsersSignup", type: :request do
       follow_redirect!
       expect(response).to render_template("users/show")
       expect(flash[:success]).to_not be(nil)
+      expect(is_logged_in?).to be_truthy
     end
   end
 
