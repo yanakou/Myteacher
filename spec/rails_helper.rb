@@ -44,6 +44,9 @@ RSpec.configure do |config|
   # クラス名の指定を省略可能
   config.include FactoryBot::Syntax::Methods
 
+  # login_helperを利用可能にする
+  config.include LoginHelper
+
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
