@@ -6,12 +6,14 @@ RSpec.describe "UsersEdit", type: :request do
   end
 
     it 'ユーザー編集画面の表示に成功すること' do
+      log_in_as(@user)
       get edit_user_path(@user)
       expect(response).to have_http_status(200)
     end
  
 
     it '編集失敗後にusers/editビューを表示すること' do
+      log_in_as(@user)
       get edit_user_path(@user)
       expect(response).to render_template("users/edit")
       patch user_path(@user), params: { user: { name:  "",
@@ -23,6 +25,7 @@ RSpec.describe "UsersEdit", type: :request do
     end
 
     it 'ユーザー編集に成功すること' do
+      log_in_as(@user)
       get edit_user_path(@user)
       expect(response).to render_template("users/edit")
       name  = "Foo Bar"
