@@ -9,7 +9,7 @@ FactoryBot.define do
   factory :user2, class: User do
     name {'user2'}
     email {'user2@example.com'}
-    password {'111111'}
-    password_confirmation {'111111'}
+    password {'000000'}
+    password_confirmation {'000000'}
   end
 end

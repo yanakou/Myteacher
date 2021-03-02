@@ -48,8 +48,8 @@ RSpec.describe "Users", type: :request do
         log_in_as(@other_user)
         patch user_path(@user), params: { user: { name: @user.name,
                                                   email: @user.email } }
-        expect(flash).to_not be_empty
-        expect(response).to redirect_to login_url
+        expect(flash).to be_empty
+        expect(response).to redirect_to root_url
       end
     end
   end
