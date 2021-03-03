@@ -26,7 +26,9 @@ RSpec.describe "UsersEdit", type: :request do
 
     it 'フレンドリーフォワーディングが機能し、ユーザー編集に成功すること' do
       get edit_user_path(@user)
+      expect(session[:forwarding_url]).not_to eq edit_user_path(@user)
       log_in_as(@user)
+      expect(session[:forwarding_url]).to be_nil
       expect(response).to redirect_to edit_user_url(@user)
       name  = "Foo Bar"
       email = "foo@bar.com"
