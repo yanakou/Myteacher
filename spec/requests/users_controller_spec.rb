@@ -14,6 +14,14 @@ RSpec.describe "Users", type: :request do
     end
   end
 
+  describe "GET /users" do
+    context "非ログイン時"
+    it "ユーザー一覧ページにアクセスすると、ログインページにリダイレクトすること" do
+      get users_path
+      expect(response).to redirect_to login_url
+    end
+  end
+
   describe "GET /users/:id/edit" do
     context "非ログイン時" do
       it "編集ページにアクセスすると、ログインページにリダイレクトすること" do
