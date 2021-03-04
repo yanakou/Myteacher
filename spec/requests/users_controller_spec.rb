@@ -60,6 +60,17 @@ RSpec.describe "Users", type: :request do
         expect(response).to redirect_to root_url
       end
     end
+
+    context "管理者でないユーザーがログイン" do
+      it "admin属性を変更できないこと" do
+        log_in_as(@other_user)
+        expect(@other_user.admin?).to be_falsey 
+        patch user_path(@other_user), params: {user: { password: '000000',
+                                            password_confirmation: '000000',
+                                            admin: true } }
+        expect(@other_user.reload.admin?).to be_falsey
+      end
+    end
   end
 
 end
