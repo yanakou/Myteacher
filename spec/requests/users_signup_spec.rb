@@ -6,10 +6,10 @@ RSpec.describe "UsersSignup", type: :request do
       get signup_path
       expect(response.body).to include "ニックネーム"
       expect do
-      post users_path, params:{user: {name:  "",
-                              email: "user@invalid",
-                              password:              "foo",
-                              password_confirmation: "bar" }}
+        post users_path, params:{user: {name:  "",
+                                email: "user@invalid",
+                                password:              "foo",
+                                password_confirmation: "bar" }}
       end.to_not change{User.count}
       expect(response).to render_template("users/new")
     end
