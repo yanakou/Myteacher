@@ -4,12 +4,12 @@ RSpec.describe Tweet, type: :model do
 
   context "tweetを保存できる場合" do
     it "投稿が有効であること" do
-      @tweet = build(:tweet)
+      @tweet = create(:tweet)
       expect(@tweet).to be_valid
     end
 
     it "imageがnilでもtweetを保存できること" do
-      @tweet = build(:tweet, image: nil)
+      @tweet = create(:tweet, image: nil)
       expect(@tweet).to be_valid
     end
   end
