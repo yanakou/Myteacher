@@ -15,10 +15,11 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "GET /users" do
-    context "非ログイン時"
-    it "ユーザー一覧ページにアクセスすると、ログインページにリダイレクトすること" do
-      get users_path
-      expect(response).to redirect_to login_url
+    context "非ログイン時" do
+      it "ユーザー一覧ページにアクセスすると、ログインページにリダイレクトすること" do
+        get users_path
+        expect(response).to redirect_to login_url
+      end
     end
   end
 
@@ -69,6 +70,27 @@ RSpec.describe "Users", type: :request do
                                             password_confirmation: '000000',
                                             admin: true } }
         expect(@other_user.reload.admin?).to be_falsey
+      end
+    end
+  end
+
+  describe "DELETE /users/:id" do
+    context "非ログイン時" do
+      it "ユーザーの削除に失敗し、ログインページにリダイレクトすること" do
+        expect do
+          delete user_path(@user)
+        end.to_not change{User.count}
+        expect(response).to redirect_to login_url
+      end
+    end
+
+    context "管理者でないユーザーがログイン" do
+      it "ユーザーの削除に失敗し、ログインページにリダイレクトすること" do
+        log_in_as(@other_user)
+        expect do 
+          delete user_path(@user)
+        end.to_not change{User.count}
+        expect(response).to redirect_to root_url
       end
     end
   end
