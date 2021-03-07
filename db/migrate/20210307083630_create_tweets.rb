@@ -5,8 +5,8 @@ class CreateTweets < ActiveRecord::Migration[6.0]
       t.text :text
       t.string :image
       t.references :user, null: false, foreign_key: true
-
       t.timestamps
     end
+    add_index :tweets, [:user_id, :created_at]
   end
 end
