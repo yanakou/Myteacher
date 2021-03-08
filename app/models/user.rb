@@ -8,4 +8,7 @@ class User < ApplicationRecord
 
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
+  # avaterカラムに画像のurlを格納するよう指定
+  mount_uploader :avatar, AvatarUploader
 end
