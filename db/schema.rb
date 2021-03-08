@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_07_083630) do
+ActiveRecord::Schema.define(version: 2021_03_08_031853) do
 
   create_table "tweets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2021_03_07_083630) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest", limit: 255
     t.boolean "admin"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
