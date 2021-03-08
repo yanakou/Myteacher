@@ -74,3 +74,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # pagination機能
 gem 'kaminari'
+
+#画像アップロード
+gem 'carrierwave'
