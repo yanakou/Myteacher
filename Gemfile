@@ -77,3 +77,6 @@ gem 'kaminari'
 
 #画像アップロード
 gem 'carrierwave'
+
+#画像のリサイズ
+gem 'mini_magick'
