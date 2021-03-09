@@ -32,6 +32,16 @@
       <%= f.password_field :password_confirmation, class: 'form-control' %>
       </div>
 
+      <div class="text-center">
+        <div class="center">
+          <%= f.label :avatar, "アバター" , style: "margin-top: 50px"%>
+        </div>
+        <label>
+          <%= image_tag "camera.jpeg"%>
+          <%= f.file_field :avatar, class: "avatar", style: "display:none;", id: "file" %>
+        </label>
+      </div>
+
       <div class="btn_wrap">
       <%= f.submit "登録する", class: "btn" %>
       </div>
