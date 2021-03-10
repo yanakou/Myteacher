@@ -2,10 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before do
-    @user = User.new(
-      name:"Example User", 
-      email:"user@example.com",
-      password:"foobar", password_confirmation:"foobar")
+    @user = build(:user)
   end
   
   it "name、emailがある場合、有効である" do
@@ -66,5 +63,11 @@ RSpec.describe User, type: :model do
     expect(@user).to_not be_valid
   end
 
-
+  it "ユーザーが削除されるとtweetも消えること" do
+    @tweet = create(:tweet)
+    expect do
+      @tweet.user.destroy
+    end.to change{Tweet.count}.by(-1)
+  end
+  
 end

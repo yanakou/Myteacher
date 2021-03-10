@@ -12,5 +12,6 @@ class User < ApplicationRecord
   # avaterカラムに画像のurlを格納するよう指定
   mount_uploader :avatar, AvatarUploader
 
-  has_many :microposts
+  #tweetsと関連付け
+  has_many :tweets, dependent: :destroy
 end
