@@ -80,3 +80,5 @@ gem 'carrierwave'
 
 #画像のリサイズ
 gem 'mini_magick'
+
+
