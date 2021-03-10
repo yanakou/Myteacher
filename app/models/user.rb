@@ -11,4 +11,6 @@ class User < ApplicationRecord
 
   # avaterカラムに画像のurlを格納するよう指定
   mount_uploader :avatar, AvatarUploader
+
+  has_many :microposts
 end
