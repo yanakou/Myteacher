@@ -15,3 +15,10 @@ User.create!(name:  "Example User",
                password:              password,
                password_confirmation: password)
 end
+
+# tweetを作成
+Tweet.create!(title:  "Hello",
+             text: "I'm feeling good!!",
+             image: File.open('./app/assets/images/camera.jpeg'),
+             user_id: 1)
+             
