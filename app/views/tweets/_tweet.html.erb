@@ -1,17 +1,16 @@
-<span>
+<div>
   <%= link_to user_path(tweet.user.id), class: "avatar--text" do %>
     <%= image_tag "#{tweet.user.avatar}", class: "avatar" %>
     <div class="tweet-index__item__user--nickname">
       <%= tweet.user.name %>
     </div>
   <% end %>
-</span
+</div>
 
-<span class="content"><%= tweet.title %></span>
-<span class="content"><%= tweet.text %></span>
+<div><%= tweet.title %></div>
+<div><%= tweet.text %></div>
 <%= image_tag tweet.image.url if tweet.image? %>
   <span class="timestamp">
     Posted <%= time_ago_in_words(tweet.created_at) %> ago.
   </span>
 
-<%= paginate @tweets %>
