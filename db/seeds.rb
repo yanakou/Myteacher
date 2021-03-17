@@ -19,5 +19,6 @@ end
 # tweetを作成
 Tweet.create!(title:  "Hello",
              text: "I'm feeling good!!",
-             image: File.open('./app/assets/images/default.png'),
+             image: File.open('./app/assets/images/camera.jpeg'),
              user_id: 1)
+             
