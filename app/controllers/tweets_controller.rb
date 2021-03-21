@@ -1,4 +1,5 @@
 class TweetsController < ApplicationController
+  before_action :logged_in_user, only: [:create, :destroy]
 
 
 
@@ -8,6 +9,12 @@ class TweetsController < ApplicationController
 
   def new
     @tweet = Tweet.new
+  end
+
+  def create
+  end
+
+  def destroy
   end
 
   
