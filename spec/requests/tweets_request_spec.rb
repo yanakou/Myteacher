@@ -6,6 +6,11 @@ RSpec.describe "Tweets", type: :request do
   end
 
   context "非ログイン時" do
+    it "newアクション送信後、ログインページにリダイレクトすること" do
+      get new_tweet_path
+      expect(response).to redirect_to login_url
+    end
+
     it "createアクション送信後、ログインページにリダイレクトすること" do
       expect do
         post tweets_path, params: { tweet: { title: "Lorem ipsum", text: "Hello! World!" } }
