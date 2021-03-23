@@ -1,1 +1,25 @@
 <h1>Welcome to the tweet</h1>
+
+<%= form_with(model: @tweet, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="text-center">
+    <div class="field">
+      <%= f.text_field :title, placeholder: "タイトルを入力してください" %>
+    </div>
+    <div class="field">
+    <%= f.text_area :text, placeholder: "本文を入力してください" %>
+    </div>
+  </div>
+  <div class="text-center">
+    <div class="center">
+      <%= f.label :image, "画像" , style: "margin-top: 50px"%>
+    </div>
+    <label>
+      <%= image_tag "camera.jpeg"%>
+      <%= f.file_field :image, class: "image", style: "display:none;", id: "file" %>
+    </label>
+    <div class="center">
+      <%= f.submit "投稿する", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
