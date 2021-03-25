@@ -1,0 +1,12 @@
+<% if logged_in? %>
+  <%= link_to new_tweet_path, class: "new-btn" do %>
+    <div class="new-btn__tweet">
+      <p class="new-btn__tweet--text">
+        投稿
+      </p>
+      <div class="new-btn__tweet--icon">
+        <i class="fas fa-plus"></i>
+      </div>
+    </div>
+  <% end %>
+<% end %>
