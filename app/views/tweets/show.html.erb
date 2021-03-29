@@ -1,0 +1,38 @@
+<div class="tweet-show__title">
+  <div class="tweet-show__title__top">
+    <%= link_to  user_path(@tweet.user.id), class: "tweet-show__title__top__user" do %>
+      <%= image_tag "#{@tweet.user.avatar}", class: "avatar" %>
+      <%= @tweet.user.name%>
+    <% end %>
+    <div class="tweet-show__title__top--edit">
+<% 
+=begin
+%>
+      <% if current_user_has?(@tweet) %>
+        <%= link_to 'edit', edit_tweet_path(@tweet.id) %>
+        <%= link_to 'destroy', tweet_path(@tweet.id), method: :delete, data: { confirm: 'sakujositemoyorosiidesuka' } %>
+      <% end %>
+<%
+=end
+%>
+    </div>
+  </div>
+  <h1 class="tweet-show__title--body">
+    <%= @tweet.title %>
+  </h1>
+  <div class="tweet-show__title--date">
+    <%= @tweet.updated_at.strftime("%Y-%m-%d %H:%M") %>
+  </div>
+  <div class="tweet-show__content">
+    <div class="tweet-show__content--text">
+      <span>
+        <%= @tweet.text %>
+        <% if @tweet.image? %>
+          <div class="tweet-show__content--imageBox">
+            <%= image_tag "#{@tweet.image}", class: "tweet-show__content--image" %>
+          </div>
+        <% end %>
+      </span>
+    </div>
+  </div>
+</div>
