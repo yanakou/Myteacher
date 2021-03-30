@@ -14,4 +14,7 @@ class User < ApplicationRecord
 
   #tweetsと関連付け
   has_many :tweets, dependent: :destroy
+
+  has_many :tweets
+  has_many :comments
 end
