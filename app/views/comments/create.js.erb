@@ -1,2 +1,2 @@
-$('#comment_area').html("#{ j(render 'comments/comment') }");
-$('#comment_form').html("#{ j(render 'comments/form') }");
+$("#comment_area").html("<%= escape_javascript(render('comments/comment')) %>");
+$("#comment_form").html("<%= escape_javascript(render('comments/form')) %>");

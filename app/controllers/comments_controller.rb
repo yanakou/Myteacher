@@ -5,9 +5,9 @@ class CommentsController < ApplicationController
   def create
     @comment = @tweet.comments.create(comment_params)
     if @comment.save
-        @comment = Comment.new
-        get_all_comments
+       @comment = Comment.new
     end
+    get_all_comments
   end
 
   def edit
