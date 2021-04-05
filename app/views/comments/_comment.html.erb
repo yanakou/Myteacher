@@ -9,7 +9,7 @@
       <%= link_to edit_tweet_comment_path(comment.tweet_id, comment.id),remote: true do %>
         <input type="submit" value="編集"></input>
       <% end %>
-      <%= link_to tweet_comment_path(comment.tweet_id, comment.id), method: :delete, remote: true, data: { confirm: 'sakuzyosite' } do %>
+      <%= link_to tweet_comment_path(comment.tweet_id, comment.id), method: :delete, remote: true, data: { confirm: '削除してもいいですか？' } do %>
         <input type="submit" value="削除"></input>
       <% end %>
     <% end %>
