@@ -1,0 +1,8 @@
+<% if logged_in? %>
+  <%= form_with(model: [@tweet, @comment], remote: true) do |form|  %>
+    <%= form.text_area :content, class: 'textarea' %>
+    <%= form.submit value: "送信する" %>
+  <% end %>
+<% else %>
+  <h2>コメントの投稿にはログインが必要です。</h2>
+<% end %>
