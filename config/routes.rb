@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :tweets do 
     resources :comments, only: [:create, :edit, :update, :destroy]
   end
+  resources :rooms, only: [:index, :create:, :show]
+  resources :messages, only: [:create, :edit, :update, :destroy]
 end
