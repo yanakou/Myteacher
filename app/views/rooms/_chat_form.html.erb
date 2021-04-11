@@ -1,0 +1,9 @@
+<div class="room-show__form">
+  <div class="room-show__form__box">
+    <%= form_with(model: @message, id: "room-show__form", remote:true) do |f| %>
+      <%= f.text_field :message, placeholder: "メッセージを入力してください" ,class: "room-show__form--input" %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+      <button class="fa fa-send fa-2x room-show__form--btn" type="submit"></button>
+    <% end %>
+  </div>
+</div>
