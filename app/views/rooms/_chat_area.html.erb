@@ -5,7 +5,7 @@
         <% if e.user.id != current_user.id %>
           <%= link_to user_path(e.user.id) do %>
             <%= image_tag "#{e.user.avatar}", class:"avatar" %>
-            <%= e.user.nickname %>
+            <%= e.user.name %>
             さんとのメッセージ
           <% end %>
         <% end %>
