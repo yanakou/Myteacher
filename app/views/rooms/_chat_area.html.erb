@@ -1,0 +1,55 @@
+<div class="wrapper">
+  <div class="room-show">
+    <div class="room-show__title">
+      <% @entries.each do |e| %>
+        <% if e.user.id != current_user.id %>
+          <%= link_to user_path(e.user.id) do %>
+            <%= image_tag "#{e.user.avatar}", class:"avatar" %>
+            <%= e.user.name %>
+            さんとのメッセージ
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="room-show__items">
+      <% if @messages.present? %>
+        <% @messages.each do |m| %>
+          <div class="room-show__item" id="message_<%= m.id %>">
+          <% # 右側に来るように %>
+            <% if current_user_has?(m) %>
+              <div class="room-show__item__right">
+                <%= form_with(model: @message, url: message_path(m.id), class: "room-show__item__right--btn", remote: true, method: :delete, data: { confirm: '削除してもいいですか？' }) do |f| %>
+                  <%= f.hidden_field :room_id, value: @room.id %>
+                  <%= f.submit "削除", class: "btn rounded-pill" %>
+                <% end %>
+                <span class="room-show__item--message">
+                  <%= m.message %>
+                </span>
+              </div>
+              <div class="room-show__item__right">
+                <div class="room-show__item--date">
+                  <%= m.created_at.strftime("%Y-%m-%d %H:%M") %>
+                </div>
+              </div>
+            <% # 左側に来る処理 %>
+            <% else %>
+              <div class="room-show__item__left">
+                <%= link_to user_path(m.user.avatar) do %>
+                  <%= image_tag "#{m.user.avatar}", class:"avatar mt05rem" %>
+                <% end %>
+                <span class="room-show__item--message">
+                  <%= m.message %>
+                </span>
+              </div>
+              <div class="room-show__item__left">
+                <div class="room-show__item--date">
+                  <%= m.created_at.strftime("%Y-%m-%d %H:%M") %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
