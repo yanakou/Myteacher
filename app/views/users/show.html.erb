@@ -1,5 +1,5 @@
 <%= @user.name %>
 <%= image_tag @user.avatar.url if @user.avatar? %>
-
+<%= render "relationships/follow" %>
 <%= render "contact" %>
 　
