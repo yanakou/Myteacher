@@ -2,4 +2,27 @@
 <%= image_tag @user.avatar.url if @user.avatar? %>
 <%= render "relationships/follow" %>
 <%= render "contact" %>
+
+<div class="user-show__bottom">
+  <div class="user-show__bottom--name">
+    <strong>
+      <%= @user.name %>
+    </strong>
+  </div>
+  <div class="user-show__bottom__follow">
+    <div class="user-show__bottom__follow--people">
+      <%= link_to following_user_path(@user) do %>
+        <%= @user.following.count %>
+      フォロー
+      <% end %>
+    </div>
+    <div class="user-show__bottom__follow--people">
+      <%= link_to followers_user_path(@user) do %>
+        <%= @user.followers.count %>
+        フォロワー
+      <% end %>
+    </div>
+  </div>
+</div>
+
 　
