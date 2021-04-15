@@ -58,6 +58,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def following
+    @users = @user.following
+  end
+
+  def followers
+    @users = @user.followers
+  end
+
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "ユーザーを削除しました"
