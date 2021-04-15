@@ -31,10 +31,9 @@
                   <%= m.created_at.strftime("%Y-%m-%d %H:%M") %>
                 </div>
               </div>
-            <% # 左側に来る処理 %>
             <% else %>
               <div class="room-show__item__left">
-                <%= link_to user_path(m.user.avatar) do %>
+                <%= link_to user_path(m.user.id) do %>
                   <%= image_tag "#{m.user.avatar}", class:"avatar mt05rem" %>
                 <% end %>
                 <span class="room-show__item--message">
