@@ -4,7 +4,7 @@
       <% @entries.each do |e| %>
         <% if e.user.id != current_user.id %>
           <%= link_to user_path(e.user.id) do %>
-            <%= image_tag "#{e.user.avatar}", class:"avatar" %>
+            <%= image_tag "#{e.user.avatar}"%>
             <%= e.user.name %>
             さんとのメッセージ
           <% end %>
@@ -31,10 +31,11 @@
                   <%= m.created_at.strftime("%Y-%m-%d %H:%M") %>
                 </div>
               </div>
+            <% # 左側に来る処理 %>
             <% else %>
               <div class="room-show__item__left">
                 <%= link_to user_path(m.user.id) do %>
-                  <%= image_tag "#{m.user.avatar}", class:"avatar mt05rem" %>
+                  <%= image_tag "#{m.user.avatar}", class:" mt05rem" %>
                 <% end %>
                 <span class="room-show__item--message">
                   <%= m.message %>
