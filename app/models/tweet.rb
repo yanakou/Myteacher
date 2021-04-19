@@ -1,6 +1,7 @@
 class Tweet < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
   
   validates :user_id, presence: true
   validates :text, presence: true, length: { maximum: 1500 }
@@ -11,4 +12,9 @@ class Tweet < ApplicationRecord
   
   # imageカラムに画像のurlを格納するよう指定
   mount_uploader :image, ImageUploader
+
+  #既にいいねしているか確認するメソッド
+  def like_user(user_id)
+    likes.find_by(user_id: user_id)
+  end
 end
