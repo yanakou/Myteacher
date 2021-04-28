@@ -1,0 +1,1 @@
+$("#like_#{@tweet.id}").html("<%= escape_javascript(render('likes/like'), locals => { :tweet => @tweet }) %>");

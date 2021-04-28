@@ -1,0 +1,20 @@
+<% if logged_in? %>
+  <% if tweet.like_user(current_user.id) %>
+    <%= link_to tweet_like_path(tweet.likes, tweet_id: tweet.id), method: :delete, remote: true do %>
+      <i aria-hidden="true" class="fa fa-heart" style="color: red;">
+        <%= tweet.likes.count %>
+      </i>
+    <% end %>
+  <% else %>
+    <%= link_to tweet_likes_path(tweet.id), method: :post, remote: true do %>
+      <i aria-hidden="true" class="fa fa-heart" style="color: #C0C0C0;">
+        <%= tweet.likes.count %>
+      </i>
+    <% end %>
+  <% end %>
+<% else %>
+  <i aria-hidden="true" class="fa fa-heart">
+    <%= tweet.likes.count %>
+  </i>
+<% end %>
+
