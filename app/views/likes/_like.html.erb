@@ -1,4 +1,4 @@
-<% if logged_in? %>
+<% if logged_in? && !current_user?(tweet.user)%>
   <% if tweet.like_user(current_user.id) %>
     <%= link_to tweet_like_path(tweet.likes, tweet_id: tweet.id), method: :delete, remote: true do %>
       <h1>いいね済み</h1>
@@ -12,8 +12,6 @@
     <% end %>
   <% end %>
 <% else %>
-  <i aria-hidden="true" class="fa fa-heart">
     <%= tweet.likes.count %>
-  </i>
 <% end %>
 
