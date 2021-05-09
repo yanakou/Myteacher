@@ -14,3 +14,10 @@
     Posted <%= time_ago_in_words(tweet.created_at) %> ago.
   </span>
 
+<div class="tweet-index__item__footer">
+  <div class="tweet-index__item--like">
+    <div id="like_<%= tweet.id %>">
+      <%= render "likes/like", tweet: tweet %>
+    </div>
+  </div>
+</div>
