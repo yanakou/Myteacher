@@ -1,23 +1,35 @@
-<div>
-  <%= link_to user_path(tweet.user.id), class: "avatar--text" do %>
-    <%= image_tag "#{tweet.user.avatar}", class: "avatar" %>
-    <div class="tweet-index__item__user--nickname">
-      <%= tweet.user.name %>
-    </div>
-  <% end %>
-</div>
-
-<div><%= tweet.title %></div>
-<div><%= tweet.text %></div>
-<%= image_tag tweet.image.url if tweet.image? %>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(tweet.created_at) %> ago.
-  </span>
-
-<div class="tweet-index__item__footer">
-  <div class="tweet-index__item--like">
-    <div id="like_<%= tweet.id %>">
-      <%= render "likes/like", tweet: tweet %>
-    </div>
+<li class="tweet-index__item">
+  <div class="tweet-index__item__user">
+    <span>
+      <%= link_to user_path(tweet.user.id), class: "avatar--text" do %>
+        <%= image_tag "#{tweet.user.avatar}", class: "avatar" %>
+        <div class="tweet-index__item__user--nickname">
+          <%= tweet.user.name %>
+        </div>
+      <% end %>
+    </span>
+    <%= link_to tweet_path(tweet.id) do %>
+      <div class="tweet-index__item--sub">
+        <%= tweet.created_at.strftime("%Y-%m-%d") %>
+      </div>
+    <% end %>
   </div>
-</div>
+  <%= link_to  tweet_path(tweet.id) do %>
+    <p class="tweet-index__item--title">
+      <%= tweet.title %>
+    </p>
+    <% if tweet.image? %>
+      <%= image_tag "#{tweet.image}", class: "tweet-index__item--image" %>
+    <% else %>
+      <%= image_tag asset_path("default.png"), class: "tweet-index__item--image" %>
+    <% end %>
+  <% end %>
+  <div class="tweet-index__item__footer">
+    <div class="tweet-index__item--like">
+      <div id="like_<%= tweet.id %>">
+        <%= render 'likes/like', tweet: tweet %>
+      </div>
+    </div>
+    <%= link_to "もっと見る", tweet_path(tweet.id), class: "tweet-index__item--show" %>
+  </div>
+</li>

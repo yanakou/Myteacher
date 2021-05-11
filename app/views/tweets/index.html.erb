@@ -1,8 +1,12 @@
-<h1>All tweets</h1>
-
-<ul class="tweets">
-  <%= render @tweets %>
-</ul>
-
-<%= paginate @tweets %>
+<div class="wrapper">
+  <ul class="tweet-index">
+    <div class="tweet-index__title">
+      <p class="tweet-index__title--text"></p>
+    </div>
+    <%= render @tweets %>
+  </ul>
+  <div class="tweet-index--footer">
+    <%= paginate @tweets %>
+  </div>
+</div>
 <%= render 'tweets/new_btn' %>
