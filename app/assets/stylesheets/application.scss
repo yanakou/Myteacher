@@ -22,7 +22,9 @@
  @import '@fortawesome/fontawesome-free/scss/v4-shims';
  @import "config/colors";
  @import "mixin/media";
+ @import "mixin/tweet-items";
  @import "modules/common";
+ @import "modules/tweet-index";
  @import "custom";
  @import "modules/new-btn";
  @import "modules/room-show";
