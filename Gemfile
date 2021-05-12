@@ -81,4 +81,4 @@ gem 'carrierwave'
 #画像のリサイズ
 gem 'mini_magick'
 
-
+gem 'acts-as-taggable-on', '~> 6.0'
