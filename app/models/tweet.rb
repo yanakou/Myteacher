@@ -17,4 +17,7 @@ class Tweet < ApplicationRecord
   def like_user(user_id)
     likes.find_by(user_id: user_id)
   end
+
+  # ActAsTaggable-------------------------------------------------------------------
+  acts_as_taggable
 end
