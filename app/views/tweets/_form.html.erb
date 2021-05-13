@@ -19,8 +19,13 @@
       <%= image_tag "camera.jpeg"%>
       <%= f.file_field :image, class: "image", style: "display:none;", id: "file" %>
     </label>
+    <div>
+      <%= f.label :tag_list %>
+      <%= f.text_field :tag_list, value: @tweet.tag_list.join(','), class: "form-control" %>
+    </div>
     <div class="center">
       <%= f.submit "投稿する", class: "btn btn-primary" %>
     </div>
   </div>
+
 <% end %>
