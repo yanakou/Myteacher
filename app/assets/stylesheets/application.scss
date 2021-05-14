@@ -20,6 +20,8 @@
  @import '@fortawesome/fontawesome-free/scss/regular';
  @import '@fortawesome/fontawesome-free/scss/brands';
  @import '@fortawesome/fontawesome-free/scss/v4-shims';
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
  @import "config/colors";
  @import "mixin/media";
  @import "mixin/tweet-items";
@@ -28,4 +30,5 @@
  @import "custom";
  @import "modules/new-btn";
  @import "modules/room-show";
+ 
  
