@@ -81,4 +81,8 @@ gem 'carrierwave'
 #画像のリサイズ
 gem 'mini_magick'
 
+#タグ付け機能
+gem 'acts-as-taggable-on', '~> 6.0'
 
+#Tag-it(タグ付けのUIを提供するjQueryプラグイン)
+gem 'jquery-ui-rails'
