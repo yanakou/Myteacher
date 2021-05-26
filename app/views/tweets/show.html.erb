@@ -35,6 +35,9 @@
       </span>
       <%= render "comments/index" %>
     </div>
+    <div class="tweet-show__content--tags">
+      <%= render '/tweets/tag_list', tag_list: @tweet.tag_list %>
+    </div>
   </div>
   <div class="like">
   <div id="like_<%= @tweet.id %>">
