@@ -31,6 +31,10 @@ class TweetsController < ApplicationController
   def destroy
   end
 
+  def tags
+    @tags = Tweet.includes(:taggings).tag_counts_on(:tags)
+  end
+  
   private
   
   def tweet_params
