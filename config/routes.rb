@@ -16,7 +16,10 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
 
-  resources :tweets do 
+  resources :tweets do
+    collection do
+      get :likes, :tags # 人気投稿とタグ一覧
+    end 
     resources :comments, only: [:create, :edit, :update, :destroy]
     resources :likes, only: [:create, :destroy]
   end
