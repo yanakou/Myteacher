@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div class="tweet-tags">
+    <div class="tweet-tags__title">
+      <div class="tweet-tags__title__right">
+        <p class="tweet-tags__title--body">
+          <%= "人気タグ" %>
+        </p>
+      </div>
+    </div>
+    <ul class="tweet-tags__items">
+      <% @tags.each do |tag| %>
+        <li class="tweet-tags__item">
+          <%= link_to  tweets_path(tag_name: tag.name), class: "tweet-tags__item--link" do %>
+            <button type="button" class="btn btn-info">
+              <%= tag.name %>
+            </button>
+            <div class="tweet-tags__item--body">
+              <%= tag.count %>
+              <%= "件" %>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
