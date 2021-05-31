@@ -1,4 +1,6 @@
 <h1>Welcome to the tweet</h1>
+<h1 id="hello">Hello World</h1>
+
 
 
 <%= form_with(model: @tweet, local: true) do |f| %>
@@ -20,8 +22,7 @@
       <%= f.file_field :image, class: "image", style: "display:none;", id: "file" %>
     </label>
     <div>
-      <%= f.label :tag_list %>
-      <%= f.text_field :tag_list, value: @tweet.tag_list.join(','), class: "form-control" %>
+      <ul id='tweet-tags'></ul>
     </div>
     <div class="center">
       <%= f.submit "投稿する", class: "btn btn-primary" %>
@@ -29,3 +30,4 @@
   </div>
 
 <% end %>
+

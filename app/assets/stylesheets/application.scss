@@ -22,6 +22,8 @@
  @import '@fortawesome/fontawesome-free/scss/v4-shims';
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import "jquery.tagit";       // 記述の順番に注意
+ @import "tagit.ui-zendesk";   // こっちを後に書かないと、タグ削除（ x ）が表示されない
  @import "config/colors";
  @import "mixin/media";
  @import "mixin/tweet-items";
