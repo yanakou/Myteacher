@@ -3,13 +3,19 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-require("@rails/ujs").start()
+
+require("@rails/ujs").start() //いいね機能に必須
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require("jquery")
+// THIS IS MAKING jQuery AVAILABLE EVEN INSIDE Views FOLDER
+global.$ = require("jquery")
+require("jquery-ui")　//必須
+require("tag-it")
+require("tagit")
 import "bootstrap"
 import '@fortawesome/fontawesome-free/js/all';
+
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

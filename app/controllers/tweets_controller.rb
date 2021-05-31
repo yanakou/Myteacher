@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :destroy]
+  before_action :set_available_tags_to_gon, only: [:new, :edit]
 
 
 
@@ -40,4 +41,9 @@ class TweetsController < ApplicationController
   def tweet_params
     params.require(:tweet).permit(:title, :text, :image, :tag_list)
   end
+
+  def set_available_tags_to_gon
+    gon.available_tags = Tweet.includes(:taggings).tags_on(:tags).pluck(:name)
+  end
+
 end
