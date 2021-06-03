@@ -33,5 +33,20 @@
           </ul>
         </nav>
       </div>
-
+      
+    <% if false %>  
+      <div class="header-bottom">
+        <ul class="header-bottom__list">
+          <% @tags = ["英会話","英語","中国語","宅建","簿記","FP","危険物取扱者","フランス後"] %>
+          <% @tags.each do |tag| %>
+            <li class="header-bottom__list__item">
+              <%= link_to tag, tweets_path(tag_name: tag), class: "header-bottom__list--name" %>
+            </li>
+          <% end %>
+          <ul class="header-bottom__list__tags">
+            <%= link_to "全てのタグ", tags_tweets_path, class: ".header-bottom__list--name" %>
+          </ul>
+        </ul>
+      </div>
+    <% end %>
 </header>
