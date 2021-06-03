@@ -1,2 +1,16 @@
-<h1>Tweets::Searches#index</h1>
-<p>Find me in app/views/tweets/searches/index.html.erb</p>
+<div class='wrapper'>
+  <% if @tweets.present? %>
+    <ul class='tweet-index'>
+      <%= render partial: 'tweets/tweet', collection: @tweets, as: :tweet %>
+    </ul>
+    <div class="tweet-index--footer">
+      <%= paginate @tweets %>
+    </div>
+  <% else %>
+    <div class="text-center">
+      一致する投稿はありません
+    </div>
+  <% end %>
+</div>
+
+<%= render 'tweets/new_btn' %>

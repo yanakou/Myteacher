@@ -39,7 +39,7 @@ class TweetsController < ApplicationController
   private
   
   def tweet_params
-    params.require(:tweet).permit(:title, :text, :image, :tag_list)
+    params.require(:tweet).permit(:title, :text, :image, :tag_list).merge(user_id: current_user.id)
   end
 
   def set_available_tags_to_gon
