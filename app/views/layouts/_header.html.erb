@@ -1,6 +1,11 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <%= link_to "MyTeacher", root_path, id: "logo" %>
+        <div class='header-top__right'>
+          <%= form_with(url: tweets_searches_path, local: true, method: :get) do |f| %>
+            <%= f.text_field :keyword, placeholder: "検索する", class: "header-top__right--search" %>
+          <% end %>
+        </div>
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "先生一覧", "#" %></li>

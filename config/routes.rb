@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   get 'likes/create'
   get 'likes/destroy'
   get 'sessions/new'
@@ -15,7 +16,11 @@ Rails.application.routes.draw do
   end
 
   resources :relationships, only: [:create, :destroy]
-
+  
+  namespace :tweets do
+    resources :searches, only: :index # 検索機能
+  end
+  
   resources :tweets do
     collection do
       get :likes, :tags # 人気投稿とタグ一覧

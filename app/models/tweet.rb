@@ -18,6 +18,15 @@ class Tweet < ApplicationRecord
     likes.find_by(user_id: user_id)
   end
 
+  # search-------------------------------------------------------------------
+  def self.search(search)
+    if search
+      Tweet.where('title Like(?) OR text Like(?)', "%#{search}%", "%#{search}%")
+    else
+      Tweet.all
+    end
+  end
+  
   # ActAsTaggable-------------------------------------------------------------------
   acts_as_taggable
 end
