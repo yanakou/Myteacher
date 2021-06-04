@@ -11,6 +11,9 @@
             <li><%= link_to "先生一覧", "#" %></li>
             <% if logged_in? %>
               <li class="dropdown">
+                <div>
+                  <%= render 'layouts/circle' %>
+                </div>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   ユーザー名 <b class="caret"></b>
                 </a>
