@@ -46,4 +46,7 @@ class User < ApplicationRecord
     following_relationships.find_by(following_id: user.id).destroy
   end
 
+  # notifications-------------------------------------------------------------------
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id'
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id'
 end
