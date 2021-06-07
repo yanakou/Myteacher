@@ -20,18 +20,7 @@
             通知はありません
           </p>
       </ul>
-      <ul class='notification-top__activities'>
-        <% if @activities.exists? %>
-          <% @activities.each do |activity|%>
-            <%= render "activities/activity", activity: activity %>
-          <% end %>
-          <%= paginate @activities %>
-        <% else %>
-          <p class='text-center.notification-top__items--none'>
-            活動ははありません
-          </p>
-        <% end %>
-      </ul>
+      
     </div>
   </div>
 </div>
