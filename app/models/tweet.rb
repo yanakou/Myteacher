@@ -29,6 +29,22 @@ class Tweet < ApplicationRecord
     end
   end
   
+  def create_notification_like!(current_user)
+    # 既にいいねされてるか検索
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and tweet_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
+    # いいねされてなかったら通知を作成
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        tweet_id: id,
+        visited_id: user_id,
+        action: 'like'
+      )
+      # 自分の投稿にはいいね通知済みにする
+      notification.checked = true if notification.visitor_id == notification.visited_id
+      notification.save if notification.valid?
+    end
+  end
+  
   # ActAsTaggable-------------------------------------------------------------------
   acts_as_taggable
 end

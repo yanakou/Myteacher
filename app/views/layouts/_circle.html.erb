@@ -1,7 +1,10 @@
 <%= link_to(notifications_path, class: "header-top__right--bell") do %>
-  <span class='fa-stack'>
-    <i class="far fa-bell fa-2x black-important"></i>
-    <i class="fas fa-circle n-circle fa-stack-1x"></i>
-    
-  </span>
+  <% if unchecked_notifications.any?%>
+    <span class='fa-stack'>
+      <i class="far fa-bell fa-lg fa-stack-2x black-important"></i>
+      <i class="fas fa-circle n-circle fa-stack-1x"></i>
+    </span>
+  <% else %>
+      <i class="far fa-bell fa-lg black-important"></i>
+  <% end %>
 <% end %>
