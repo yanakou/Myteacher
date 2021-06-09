@@ -5,7 +5,8 @@ class CommentsController < ApplicationController
   def create
     @comment = @tweet.comments.create(comment_params)
     if @comment.save
-       @comment = Comment.new
+      @tweet.create_notification_comment!(current_user, @comment.id)
+      @comment = Comment.new
     end
     get_all_comments
   end
@@ -29,11 +30,11 @@ class CommentsController < ApplicationController
   private
 
   def set_tweet
-      @tweet = Tweet.find(params[:tweet_id])
+    @tweet = Tweet.find(params[:tweet_id])
   end
 
   def set_comment
-      @comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def get_all_comments
@@ -41,6 +42,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-      params.require(:comment).permit(:content).merge(user_id: current_user.id)
+    params.require(:comment).permit(:content).merge(user_id: current_user.id)
   end
 end
