@@ -1,2 +1,40 @@
-<%= notification.visitor.name %>
-<%= notification.action %>
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+
+<li>
+  <% case notification.action %>
+  <% when 'like' %>
+    <%= link_to tweet_path(notification.tweet.id), class: "notification-top__items__item" do %>
+      <div class="notification-top__items__item--icon">
+        <i class="fa fa-heart fa-2x" aria-hidden="true", style: "color: red;"></i>
+      </div>
+      <div class="notification-top__items__item--content">
+        <%= image_tag "#{visitor.avatar}", class: "avatar"%>
+        <strong>
+          <%= visitor.name %>さんがあなたの投稿にいいねしました
+        </strong>
+      </div>
+      <div class='notification-top__items__item--message'>
+        <%= notification.tweet.title %>
+      </div>
+      <div class='notification-top__items__item--date'>
+        <%= time_ago_in_words(notification.created_at).upcase %>
+      </div>
+    <% end %>
+  <% end %>
+</li>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
