@@ -51,7 +51,27 @@
         <%= time_ago_in_words(notification.created_at).upcase %>
       </div>
     <% end %>
+
+  <% when 'message' %>
+    <%= link_to room_path(notification.room), class: "notification-top__items__item" do %>
+      <div class="notification-top__items__item--icon">
+        <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+      </div>
+      <div class="notification-top__items__item--content">
+        <%= image_tag "#{visitor.avatar}", class: "avatar"%>
+        <strong>
+          <%= visitor.name %>さんがあなたにメッセージを送信しました
+        </strong>
+      </div>
+      <div class='notification-top__items__item--message'>
+        <%= truncate(Message.find_by(id: notification.message_id)&.message, length: 20) %>
+      </div>
+      <div class='notification-top__items__item--date'>
+        <%= time_ago_in_words(notification.created_at).upcase %>
+      </div>
+    <% end %> 
   <% end %>
+
 </li>  
 
 
