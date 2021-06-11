@@ -1,6 +1,32 @@
 <% visitor = activity.visitor %>
 <% visited = activity.visited %>
+<li>
+  <% case activity.action %>
+  <% when 'like' %>
+    <%= link_to tweet_path(activity.tweet.id), class: "notification-top__items__item" do %>
+      <div class="notification-top__items__item--icon">
+        <i class="fa fa-heart fa-2x" aria-hidden="true", style: "color: red;"></i>
+      </div>
+      <div class="notification-top__items__item--content">
+        <% if activity.tweet.user_id == visitor.id %>
+          <%= image_tag "#{visitor.avatar}", class: "avatar"%>
+          あなたの投稿
+        <% else %>
+          <%= image_tag "#{visited.avatar}", class: "avatar"%>
+          <strong>
+            <%= activity.tweet.user.name + 'さんの投稿' %>
+            にいいねしました
+          </strong>
+        <% end %>
+      </div>
+      <div class='notification-top__items__item--message'>
+        <%= activity.tweet.title %>
+      </div>
+      <div class='notification-top__items__item--date'>
+        <%= time_ago_in_words(activity.created_at).upcase %>
+      </div>
+    <% end %>
 
-<strong>
-<%= visitor.name %>さんが活動しました
-</strong>
+  <% end %>
+
+</li>
