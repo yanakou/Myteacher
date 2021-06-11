@@ -1,0 +1,27 @@
+<div class='wrapper'>
+  <div class='container'>
+    <div class='notification-top'>
+      <div class='notification-top__title'>
+        <div class='notification-top__title__left notification-top__title--show'>
+          <h2 class='notification-top__title--name'>
+            通知
+          </h2>
+        </div>
+        <div class='notification-top__title__right notification-top__title--down'>
+          <h2 class='notification-top__title--name'>自分の活動</h2>
+        </div>
+      </div>
+      <ul class='notification-top__items'>
+        <% if @notifications.exists? %>
+          <%= render @notifications %>
+          <%= paginate @notifications %>
+        <% else %>
+          <p class='text-center notification-top__items--none'>
+            通知はありません
+          </p>
+        <% end %>
+      </ul>
+      
+    </div>
+  </div>
+</div>

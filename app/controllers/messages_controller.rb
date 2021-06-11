@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.create(message_params)
     if @message.save
-      # @room.create_notification_message!(current_user, @message.id)
+      @room.create_notification_message!(current_user, @message.id)
       @message = Message.new
     end
     gets_entries_all_messages
