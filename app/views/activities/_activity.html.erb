@@ -72,6 +72,21 @@
       </div>
     <% end %>
 
+  <% when 'follow' %>
+    <%= link_to user_path(visited), class: "notification-top__items__item" do %>
+      <div class="notification-top__items__item--icon">
+        <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+      </div>
+      <div class="notification-top__items__item--content">
+        <%= image_tag "#{visited.avatar}", class: "avatar"%>
+        <strong>
+          <%= visited.name %>
+          さんをフォローしました
+        </strong>
+      </div>
+      <div class='notification-top__items__item--date'>
+        <%= time_ago_in_words(activity.created_at).upcase %>
+      </div>
+    <% end %>
   <% end %>
-
 </li>
