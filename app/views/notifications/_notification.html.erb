@@ -69,7 +69,23 @@
       <div class='notification-top__items__item--date'>
         <%= time_ago_in_words(notification.created_at).upcase %>
       </div>
-    <% end %> 
+    <% end %>
+    
+    <% when 'follow' %>
+    <%= link_to user_path(visitor), class: "notification-top__items__item" do %>
+      <div class="notification-top__items__item--icon">
+        <i class="fa fa-user fa-2x" aria-hidden="true", style: "color: red;"></i>
+      </div>
+      <div class="notification-top__items__item--content">
+        <%= image_tag "#{visitor.avatar}", class: "avatar"%>
+        <strong>
+          <%= visitor.name %>さんがあなたをフォローしました
+        </strong>
+      </div>
+      <div class='notification-top__items__item--date'>
+        <%= time_ago_in_words(notification.created_at).upcase %>
+      </div>
+    <% end %>
   <% end %>
 
 </li>  
