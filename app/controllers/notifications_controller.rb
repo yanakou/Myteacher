@@ -5,6 +5,6 @@ class NotificationsController < ApplicationController
     @notifications.where(checked: false).each do |notification|
       notification.update_attributes(checked: true)
     end
-    # @activities = current_user.active_notifications.includes(%i[visitor tweet room visited]).page(params[:page]).per(20)
+    @activities = current_user.active_notifications.includes(%i[visitor tweet room visited]).page(params[:page]).per(20)
   end
 end
