@@ -37,7 +37,7 @@
     </div>
   </div>
   <%= render @tweets %>
-  <% unless @tweets.present?%>
+  <% unless @tweets.present? %>
     投稿がありません
   <% end %>
   <%= paginate @tweets %>
