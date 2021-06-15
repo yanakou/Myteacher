@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @tweets = @user.tweets.includes(:taggings).order('created_at desc').page(params[:page]).per(10)
     @user = User.find(params[:id])
     if logged_in?
       @currentUserEntry = Entry.where(user_id: current_user.id)
