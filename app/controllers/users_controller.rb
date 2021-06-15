@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :set_user, only: [:show, :edit, :update, :following, :followers]
+  before_action :set_user, only: [:show, :edit, :update, :likes, :following, :followers]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   before_action :join_room, only: [:show, :likes]
@@ -38,6 +38,10 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def likes
+    @tweets = @user.liked_tweets.includes(%i[taggings user]).order('updated_at desc').page(params[:page]).per(10)
   end
 
   def following
