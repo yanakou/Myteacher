@@ -3,7 +3,7 @@
   <%= link_to user_path(user.id) do %>
     <%= image_tag "#{user.avatar}", class: "room-index__items__item--icon" %>
   <% end %>
-  <%= room_path(room), class: 'room-index__items__item__content' do %>
+  <%= link_to room_path(room), class: 'room-index__items__item__content' do %>
     <div class="room-index__items__item__content--body">
       <strong class="room-index__items__item__content--nickname">
         <%= user.name %>
