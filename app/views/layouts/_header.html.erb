@@ -23,7 +23,7 @@
                   <li><%= link_to "メッセージ", rooms_path,  class: "header-top__box--content" %></li>
                   <li><%= link_to "タイムライン", '#' %></li>
                   <li><%= link_to "ユーザー一覧", users_path %></li>
-                  <li><%= link_to "人気投稿", '#' %></li>
+                  <li><%= link_to "人気投稿", likes_tweets_path, class: "header-top__box--content" %></li>
                   <li class="divider"></li>
                   <li>
                     <%= link_to "ログアウト", logout_path, method: :delete %>
