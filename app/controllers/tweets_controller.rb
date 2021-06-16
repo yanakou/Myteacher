@@ -32,6 +32,10 @@ class TweetsController < ApplicationController
   def destroy
   end
 
+  def likes
+    @tweets = Tweet.includes(%i[taggings user]).order('likes_count desc').page(params[:page]).per(10)
+  end
+  
   def tags
     @tags = Tweet.includes(:taggings).tag_counts_on(:tags)
   end
