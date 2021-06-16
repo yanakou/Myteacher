@@ -14,6 +14,7 @@ class User < ApplicationRecord
 
   # likeモデルと関連付け
   has_many :likes
+  has_many :liked_tweets, through: :likes, source: :tweet
   
   #tweetsと関連付け
   has_many :tweets, dependent: :destroy

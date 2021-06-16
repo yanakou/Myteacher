@@ -1,0 +1,19 @@
+<div class='tweet-index'>
+  <div class='user-show__select'>
+    <div class='user-show__select__left'>
+      <%= link_to "最近の投稿", user_path %>
+    </div>
+    <div class='user-show__select__right'>
+      <div class='user-show__select__right'>
+        <div class='user-show__select--active cursor-pointer'>
+          いいねした投稿
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render @tweets %>
+  <% unless @tweets.present? %>
+    いいねした投稿がありません
+  <% end %>
+  <%= paginate @tweets %>
+</div>
