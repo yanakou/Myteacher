@@ -4,18 +4,14 @@
       <%= image_tag "#{@tweet.user.avatar}", class: "avatar" %>
       <%= @tweet.user.name%>
     <% end %>
+
     <div class="tweet-show__title__top--edit">
-<% 
-=begin
-%>
       <% if current_user_has?(@tweet) %>
-        <%= link_to 'edit', edit_tweet_path(@tweet.id) %>
-        <%= link_to 'destroy', tweet_path(@tweet.id), method: :delete, data: { confirm: 'sakujositemoyorosiidesuka' } %>
+        <%= link_to '編集', edit_tweet_path(@tweet.id) %>
+        
       <% end %>
-<%
-=end
-%>
     </div>
+
   </div>
   <h1 class="tweet-show__title--body">
     <%= @tweet.title %>
