@@ -7,7 +7,7 @@
 
     <div class="tweet-show__title__top--edit">
       <% if current_user_has?(@tweet) %>
-        <%= link_to '編集', edit_tweet_path(@tweet.id) %>
+        <%= link_to '編集', edit_tweet_path(@tweet.id),data: {"turbolinks" => false} %>
         
       <% end %>
     </div>
