@@ -1,5 +1,7 @@
 class TweetsController < ApplicationController
-  before_action :logged_in_user, only: [:new, :create, :destroy]
+  before_action :logged_in_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_tweet, only: [:edit, :destroy, :show, :update]
+  before_action :blocking_edit_tweet, only: [:edit, :update, :destroy]
   before_action :set_available_tags_to_gon, only: [:new, :edit]
 
 
@@ -23,8 +25,22 @@ class TweetsController < ApplicationController
     end
   end
 
+  def edit
+    gon.tweet_tags = @tweet.tag_list 
+  end
+
+  def update
+    @tweet.update(tweet_params)
+    gon.tweet_tags = @tweet.tag_list
+    if @tweet.save
+      redirect_to tweet_path(@tweet.id), notice: '投稿を編集しました！'
+    else
+      flash.now[:alert] = "文字数を確認してください。"
+      render :edit
+    end
+  end
+
   def show
-    @tweet = Tweet.find(params[:id])
     @comment = Comment.new
     @comments = @tweet.comments.includes(:user).order('created_at asc')
   end
@@ -44,6 +60,14 @@ class TweetsController < ApplicationController
   
   def tweet_params
     params.require(:tweet).permit(:title, :text, :image, :tag_list).merge(user_id: current_user.id)
+  end
+
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
+
+  def blocking_edit_tweet
+    redirect_to root_path, alert: "不正な操作です" unless (@tweet.user == current_user) || current_user.admin?
   end
 
   def set_available_tags_to_gon
