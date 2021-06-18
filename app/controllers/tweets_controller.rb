@@ -46,6 +46,8 @@ class TweetsController < ApplicationController
   end
 
   def destroy
+    @tweet.destroy
+    redirect_to root_path, notice: '投稿を削除しました'
   end
 
   def likes
