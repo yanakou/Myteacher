@@ -89,3 +89,6 @@ gem 'jquery-ui-rails'
 
 #controller内での変数をjavascript内で使用可能にする
 gem 'gon'
+
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier'
