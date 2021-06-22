@@ -3,7 +3,7 @@
 
 
 
-<%= form_with(model: @tweet, local: true) do |f| %>
+<%= form_with(model: @tweet, local: true, id: "tweet-form") do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="text-center">
     <div class="field">
@@ -11,9 +11,7 @@
     </div>
     <div>
       <%= f.label "0/1000", for: "md-textarea", id: "tweet-text-count" %>
-    </div>
-    <div class="field">
-    <%= f.text_area :text, placeholder: "本文を入力してください" %>
+      <%= f.text_area :text, placeholder: "本文を入力してください", id: "md-textarea", required: "require" %>
     </div>
   </div>
   <div class="text-center">
