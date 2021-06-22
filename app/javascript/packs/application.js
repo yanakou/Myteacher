@@ -13,6 +13,7 @@ global.$ = require("jquery")
 require("jquery-ui")　//必須
 require("tag-it")
 require("tagit")
+require("tweet-form")
 import "bootstrap"
 import '@fortawesome/fontawesome-free/js/all';
 
