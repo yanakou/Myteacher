@@ -1,5 +1,5 @@
 $(function () {
-
+  
   $("#md-textarea").keyup(function () {
     $("#tweet-text-count").text($(this).val().length + '/1000');
   });
