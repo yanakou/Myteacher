@@ -15,17 +15,27 @@
     </div>
   </div>
   <div class="text-center">
-    <div class="center">
-      <%= f.label :image, "画像" , style: "margin-top: 50px"%>
-    </div>
-    <label>
-      <%= image_tag "camera.jpeg"%>
-      <%= f.file_field :image, class: "image", style: "display:none;", id: "file" %>
-    </label>
     <br>
     <div class='tweet-form--tags'>タグを追加</div>
     <div>
       <ul id='tweet-tags'></ul>
+    </div>
+    <div class="tweet-form__bonus__preview--title">
+      イメージ写真
+    </div>
+    <div class="tweet-form__bonus__preview">
+      <div class="label-form">
+        <div class="field image">
+        <div id='img_field' onclick="$('#file').click()">
+          <% if @tweet.image.present? %>
+            <%= image_tag "#{@tweet.image.url}", class: "tweet-form__bonus__preview--image" %>
+          <% else %>
+            <i class="fas fa-camera fa-6x tweet-form__bonus__preview--icon"></i>
+          <% end %>
+        </div>
+        </div>
+        <%= f.file_field :image, class: "image", style: "display:none;", id: "file" %>
+      </div>
     </div>
     <div class="center">
       <%= f.submit "投稿する", class: "btn btn-primary" %>
