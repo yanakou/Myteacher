@@ -36,17 +36,47 @@
         <div class="center">
           <%= f.label :avatar, "アバター" , style: "margin-top: 50px"%>
         </div>
-        <label>
-          <%= image_tag "camera.jpeg"%>
-          <%= f.file_field :avatar, class: "avatar", style: "display:none;", id: "file" %>
-        </label>
+        <div class="login__preview">
+          <div class="field image">
+            <div id='img_field' onclick="$('#file').click()">
+              <% if @user.avatar.present? %>
+                <%= image_tag "#{@user.avatar.url}", class: "avatar" %>
+              <% else %>
+                <i class="fas fa-camera fa-3x"></i>
+              <% end %>
+            </div>
+            <%= f.file_field :avatar, class: "avatar", style: "display:none;", id: "file" %>
+          </div>
+          
+        </div>
       </div>
-
-      <i class="fab fa-twitter"></i>
-      
       <div class="btn_wrap">
       <%= f.submit "登録する", class: "btn" %>
       </div>
     <% end %>
   </div>
 </div>
+
+<script>
+  $(function () {
+    $fileField = $('#file')
+
+    $($fileField).on('change', $fileField, function (e) {
+      file = e.target.files[0]
+      reader = new FileReader(),
+        $preview = $("#img_field");
+
+      reader.onload = (function (file) {
+        return function (e) {
+          $preview.empty();
+          $preview.append($('<img>').attr({
+            src: e.target.result,
+            class: "avatar",
+            title: file.name
+          }));
+        };
+      })(file);
+      reader.readAsDataURL(file);
+    });
+  });
+</script>
