@@ -1,55 +1,60 @@
-<header>
-      <div class="container">
-        <%= link_to "MyTeacher", root_path, id: "logo" %>
-        <div class='header-top__right'>
-          <%= form_with(url: tweets_searches_path, local: true, method: :get) do |f| %>
-            <%= f.text_field :keyword, placeholder: "検索する", class: "header-top__right--search" %>
+<div class="header">
+  <div class="header-contents">
+    <div class="header-top">
+      <div class='header-top__left'>
+        <%= link_to root_path do %>
+          <h1 class='header-top__left--title'>My Teacher</h1>
+        <% end %>
+      </div>
+      <div class='header-top__right'>
+        <%= form_with(url: tweets_searches_path, local: true, method: :get) do |f| %>
+          <%= f.text_field :keyword, placeholder: "検索する", class: "header-top__right--search" %>
+        <% end %>
+        <div class='header-top__right__user'>
+          <% if logged_in? %>
+              <div>
+                <%= render 'layouts/circle' %>
+              </div>
+              <div class="header-top__right__user__info">
+                <div class="header-top__right__user__info--link display-flex">
+                  <div class="header-top__right__user__info--avatar">
+                    <%= image_tag "#{current_user.avatar}", class: "avatar" %>
+                  </div>
+                  <div class="header-top__right__user__info--nickname">
+                    <%= current_user.name %>
+                  </div>   
+                  <ul class="header-top__box">
+                    <li><%= link_to "マイページを表示", user_path(current_user), class: "header-top__box--content"%></li>
+                    <li class="header-top__box--borderTop"><%= link_to "メッセージ", rooms_path, class: "header-top__box--content"%></li>
+                    <li class="header-top__box--borderTop"><%= link_to "ユーザー一覧", users_path, class: "header-top__box--content" %></li>
+                    <li class="header-top__box--borderTop"><%= link_to "人気投稿", likes_tweets_path, class: "header-top__box--content" %></li>
+                    <li class="header-top__box--borderTop"><%= link_to "ログアウト", logout_path, method: :delete, class: "header-top__box--content" %></li>
+                  </ul>  
+                </div>
+              </div>
+          <% else %>
+            <%= link_to login_path do %>
+              <input class='btn btn-success header-top__right--box' type="submit" value="ログイン">
+            <% end %>
+            <%= link_to signup_path do %>
+              <input class='btn btn-success header-top__right--box' type="submit" value="新規登録">
+            <% end %>
           <% end %>
         </div>
-        <nav>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "先生一覧", "#" %></li>
-            <% if logged_in? %>
-              <li class="dropdown">
-                <div>
-                  <%= render 'layouts/circle' %>
-                </div>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  ユーザー名 <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "マイページ", current_user %></li>
-                  <li><%= link_to "ユーザー編集", edit_user_path(current_user) %></li>
-                  <li><%= link_to "メッセージ", rooms_path,  class: "header-top__box--content" %></li>
-                  <li><%= link_to "タイムライン", '#' %></li>
-                  <li><%= link_to "ユーザー一覧", users_path %></li>
-                  <li><%= link_to "人気投稿", likes_tweets_path, class: "header-top__box--content" %></li>
-                  <li class="divider"></li>
-                  <li>
-                    <%= link_to "ログアウト", logout_path, method: :delete %>
-                  </li>
-                </ul>
-              </li>
-            <% else %>
-              <li><%= link_to "ログイン", login_path %></li>
-            <% end %>
-          </ul>
-        </nav>
       </div>
-      
-    <% if false %>  
-      <div class="header-bottom">
-        <ul class="header-bottom__list">
-          <% @tags = ["英会話","英語","中国語","宅建","簿記","FP","危険物取扱者","フランス後"] %>
-          <% @tags.each do |tag| %>
-            <li class="header-bottom__list__item">
-              <%= link_to tag, tweets_path(tag_name: tag), class: "header-bottom__list--name" %>
-            </li>
-          <% end %>
-          <ul class="header-bottom__list__tags">
-            <%= link_to "全てのタグ", tags_tweets_path, class: ".header-bottom__list--name" %>
-          </ul>
+    </div>
+    <div class="header-bottom">
+      <ul class="header-bottom__list">
+        <% @tags = ["英会話","英語","中国語","宅建","簿記","FP","危険物取扱者","フランス後"] %>
+        <% @tags.each do |tag| %>
+          <li class="header-bottom__list__item">
+            <%= link_to tag, tweets_path(tag_name: tag), class: "header-bottom__list--name" %>
+          </li>
+        <% end %>
+        <ul class="header-bottom__list__tags">
+          <%= link_to "全てのタグ", tags_tweets_path, class: ".header-bottom__list--name" %>
         </ul>
-      </div>
-    <% end %>
-</header>
+      </ul>
+    </div>
+  </div>    
+</div>
