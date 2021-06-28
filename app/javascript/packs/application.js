@@ -14,6 +14,7 @@ require("jquery-ui")　//必須
 require("tag-it")
 require("tagit")
 require("tweet-form")
+require("header")
 import "bootstrap"
 import '@fortawesome/fontawesome-free/js/all';
 
