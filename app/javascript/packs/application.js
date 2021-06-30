@@ -5,7 +5,6 @@
 
 
 require("@rails/ujs").start() //いいね機能に必須
-require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 // THIS IS MAKING jQuery AVAILABLE EVEN INSIDE Views FOLDER
