@@ -5,7 +5,6 @@
 
 
 require("@rails/ujs").start() //いいね機能に必須
-require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 // THIS IS MAKING jQuery AVAILABLE EVEN INSIDE Views FOLDER
@@ -14,6 +13,7 @@ require("jquery-ui")　//必須
 require("tag-it")
 require("tagit")
 require("tweet-form")
+require("header")
 import "bootstrap"
 import '@fortawesome/fontawesome-free/js/all';
 
