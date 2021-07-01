@@ -1,82 +1,46 @@
-<h1>Sign up</h1>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @user, local: true) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <div class="text-center">
-      <%= f.label :ニックネーム %>
-      </div>
-      <div class="center">
-      <%= f.text_field :name, class: 'form-control' %>
-      </div>
+<div class="wrapper">
+  <div class="login">
+    <div class="login__field">
       
-      <div class="text-center">
-      <%= f.label :メールアドレス %>
-      </div>
+    </div>
+    <%= form_with(model: @user, local: true) do |f| %>
       <div class="center">
-      <%= f.email_field :email, class: 'form-control' %>
+        <%= render 'shared/error_messages', object: f.object %>
       </div>
-
-      <div class="text-center">
-      <%= f.label :パスワード %>
+      <div class="login__title">
+        新規登録
       </div>
-      <div class="center">
-      <%= f.password_field :password, class: 'form-control' %> 
-      </div>
-
-      <div class="text-center">
-      <%= f.label :password_confirmation, "パスワード(再入力)" %>
-      </div>
-      <div class="center">
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-      </div>
-
-      <div class="text-center">
+      <%=render "users/form", f: f %>
+      <div class="login__field">
         <div class="center">
-          <%= f.label :avatar, "アバター" , style: "margin-top: 50px"%>
+          <%= f.submit "登録する", class: "btn btn-success" %>
         </div>
-        <div class="login__preview">
-          <div class="field image">
-            <div id='img_field' onclick="$('#file').click()">
-              <% if @user.avatar.present? %>
-                <%= image_tag "#{@user.avatar.url}", class: "avatar" %>
-              <% else %>
-                <i class="fas fa-camera fa-3x"></i>
-              <% end %>
-            </div>
-            <%= f.file_field :avatar, class: "avatar", style: "display:none;", id: "file" %>
-          </div>
-          
-        </div>
-      </div>
-      <div class="btn_wrap">
-      <%= f.submit "登録する", class: "btn" %>
       </div>
     <% end %>
   </div>
-</div>
 
-<script>
-  $(function () {
-    $fileField = $('#file')
+  <script>
+    $(function () {
+      $fileField = $('#file')
 
-    $($fileField).on('change', $fileField, function (e) {
-      file = e.target.files[0]
-      reader = new FileReader(),
-        $preview = $("#img_field");
+      $($fileField).on('change', $fileField, function (e) {
+        file = e.target.files[0]
+        reader = new FileReader(),
+          $preview = $("#img_field");
 
-      reader.onload = (function (file) {
-        return function (e) {
-          $preview.empty();
-          $preview.append($('<img>').attr({
-            src: e.target.result,
-            class: "avatar",
-            title: file.name
-          }));
-        };
-      })(file);
-      reader.readAsDataURL(file);
+        reader.onload = (function (file) {
+          return function (e) {
+            $preview.empty();
+            $preview.append($('<img>').attr({
+              src: e.target.result,
+              class: "avatar",
+              title: file.name
+            }));
+          };
+        })(file);
+        reader.readAsDataURL(file);
+      });
     });
-  });
-</script>
+  </script>
+
+</div>
