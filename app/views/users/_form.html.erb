@@ -1,0 +1,75 @@
+<div class="login__field">
+  <div class="text-center">
+    <%= f.label :name, value: 'ニックネーム'%>
+  </div>
+  <div class="center">
+    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", class: "login--input" %>
+  </div>
+</div>
+<div class="login__field">
+  <div class="center">
+    <%= f.label :email %>
+  </div> 
+  <div class="center">
+    <%= f.email_field :email, autofocus: true, class: "login--input" %>
+  </div>
+</div>
+<div class="login__field">
+  <div class="center">
+    <%= f.label :password %>
+  </div>
+  <div class="center">
+    <%= f.password_field :password, autocomplete: "off", class: "login--input" %>
+  </div>
+</div>
+<div class="login__field">
+  <div class="center">
+    <%= f.label :password_confirmation, "パスワード（確認）" %>
+  </div>
+  <div class="center">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "login--input" %>
+  </div>
+</div>
+<div class="login__field">
+  <div class="center">
+    <%= f.label :avatar %>
+  </div>
+  <div class="center">
+    <div class="lofin__preview">
+      <div class="field image">
+        <div id='img_field' onclick="$('#file').click()">
+          <% if @user.avatar.present? %>
+            <%= image_tag "#{@user.avatar.url}", class: "avatar" %>
+          <% else %>
+            <i class="fas fa-camera fa-3x"></i>
+          <% end %>
+        </div>
+        <%= f.file_field :avatar, class: "avatar", style: "display:none;", id: "file" %>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(function () {
+      $fileField = $('#file')
+
+      $($fileField).on('change', $fileField, function (e) {
+        file = e.target.files[0]
+        reader = new FileReader(),
+          $preview = $("#img_field");
+
+        reader.onload = (function (file) {
+          return function (e) {
+            $preview.empty();
+            $preview.append($('<img>').attr({
+              src: e.target.result,
+              class: "avatar",
+              title: file.name
+            }));
+          };
+        })(file);
+        reader.readAsDataURL(file);
+      });
+    });
+  </script>
+</div>
