@@ -1,7 +1,7 @@
 <li>
   <%= link_to user_path(user), class: "users__item" do %>
     <%= image_tag "#{user.avatar}", class: "avatar" %>  
-    <div class="users__item--nickname.black-important">
+    <div class="users__item--nickname black-important">
       <%= user.name %>
     </div>
   <% end %>
