@@ -1,13 +1,12 @@
 <li>
+  <% if current_user.admin? && !current_user?(user) %>
+    <%= link_to "削除", user, method: :delete, data: { confirm: "本当に削除しますか?" }, style: "color: blue;" %>
+  <% end %>
   <%= link_to user_path(user), class: "users__item" do %>
     <%= image_tag "#{user.avatar}", class: "avatar" %>  
     <div class="users__item--nickname black-important">
       <%= user.name %>
     </div>
-  <% end %>
-  <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "削除", user, method: :delete,
-                                  data: { confirm: "本当に削除しますか?" }, style: "color: blue;" %>
   <% end %>
 </li>
 
