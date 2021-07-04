@@ -1,48 +1,23 @@
-<%= @user.name %>
-<%= image_tag "#{@user.avatar}", class: "avatar"%>
-<%= render "relationships/follow" %>
-<%= render "contact" %>
-
-<div class="user-show__bottom">
-  <div class="user-show__bottom--name">
-    <strong>
-      <%= @user.name %>
-    </strong>
-  </div>
-  <div class="user-show__bottom__follow">
-    <div class="user-show__bottom__follow--people">
-      <%= link_to following_user_path(@user) do %>
-        <%= @user.following.count %>
-      フォロー
-      <% end %>
-    </div>
-    <div class="user-show__bottom__follow--people">
-      <%= link_to followers_user_path(@user) do %>
-        <%= @user.followers.count %>
-        フォロワー
-      <% end %>
-    </div>
-  </div>
-</div>
-
-<div class='tweet-index'>
-  <div class='user-show__select'>
-    <div class='user-show__select__left'>
+<div class="wrapper">
+  <%= render "/users/info" %>
+  <div class='tweet-index'>
+    <div class='user-show__select'>
+      <div class='user-show__select__left'>
+        <div class='user-show__select--active'>
+          最近の投稿
+        </div>
+      </div>
       <div class='user-show__select--active'>
-        最近の投稿
+        <%= link_to "いいねした投稿", likes_user_path, class: "a-hover" %>
       </div>
     </div>
-    <div class='user-show__select--active'>
-      <%= link_to "いいねした投稿", likes_user_path, class: "a-hover" %>
-    </div>
+    <%= render @tweets %>
+    <% unless @tweets.present? %>
+      投稿がありません
+    <% end %>
+    <%= paginate @tweets %>
   </div>
-  <%= render @tweets %>
-  <% unless @tweets.present? %>
-    投稿がありません
-  <% end %>
-  <%= paginate @tweets %>
 </div>
-
 
 
 
