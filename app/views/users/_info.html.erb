@@ -1,0 +1,48 @@
+<div class="wrapper">
+  <div class="user-show">
+    <div class="user-show__top">
+      <div class="user-show__top--icon">
+        <%= image_tag "#{@user.avatar}", class: "user-show__top--avatar" %>
+      </div>
+      <% if logged_in? && current_user == @user %>
+        <div class="user-show__top__body">
+          <div class="user-show__top--follow">
+            <%= link_to 'ユーザー編集', edit_user_path(current_user.id), class: "user-show__top--btn" %>
+          </div>
+          <div class="user-show__top--contact">
+            <%= link_to 'ログアウト', logout_path, method: :delete, class: "user-show__top--btn" %>
+          </div>
+        </div>
+      <% else %>
+        <div class="user-show__top__body">
+          <div class="user-show__top--follow">
+            <%= render "/relationships/follow" %>
+          </div>
+          <div class="user-show__top--contact">
+            <%= render "/users/contact" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="user-show__bottom">
+      <div class="user-show__bottom--name">
+        <strong>
+          <%= @user.name %>
+        </strong>
+      </div>
+      <div class="user-show__bottom__follow">
+        <div class="user-show__bottom__follow--people">
+          <%= link_to following_user_path(@user) do %>
+            <%= @user.following.count %>
+          フォロー
+          <% end %>
+        </div>
+        <div class="user-show__bottom__follow--people">
+          <%= link_to followers_user_path(@user) do %>
+            <%= @user.followers.count %>
+            フォロワー
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
