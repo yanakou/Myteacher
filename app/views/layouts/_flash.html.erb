@@ -1,0 +1,5 @@
+<div class="notification">
+  <% flash.each do |message_type, message| %>
+    <div class="<%= message_type %>"><%= message %></div>
+  <% end %> 
+</div>
