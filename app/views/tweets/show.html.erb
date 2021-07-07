@@ -1,44 +1,76 @@
-<div class="tweet-show__title">
-  <div class="tweet-show__title__top">
-    <%= link_to  user_path(@tweet.user.id), class: "tweet-show__title__top__user" do %>
-      <%= image_tag "#{@tweet.user.avatar}", class: "avatar" %>
-      <%= @tweet.user.name%>
-    <% end %>
-
-    <div class="tweet-show__title__top--edit">
-      <% if current_user_has?(@tweet) %>
-        <%= link_to '編集', edit_tweet_path(@tweet.id),data: {"turbolinks" => false} %>
-        <%= link_to '削除', tweet_path(@tweet.id), method: :delete, data: { confirm: '削除してよろしいですか？' } %>
-      <% end %>
-    </div>
-
-  </div>
-  <h1 class="tweet-show__title--body">
-    <%= @tweet.title %>
-  </h1>
-  <div class="tweet-show__title--date">
-    <%= @tweet.updated_at.strftime("%Y-%m-%d %H:%M") %>
-  </div>
-  <div class="tweet-show__content">
-    <div class="tweet-show__content--text">
-      <span>
-        <%= @tweet.text %>
-        <% if @tweet.image? %>
-          <div class="tweet-show__content--imageBox">
-            <%= image_tag "#{@tweet.image}", class: "tweet-show__content--image" %>
-          </div>
+<div class="wrapper">
+  <div class="tweet-show">    
+    <div class="tweet-show__title">
+      <div class="tweet-show__title__top">
+        <%= link_to  user_path(@tweet.user.id), class: "tweet-show__title__top__user" do %>
+          <%= image_tag "#{@tweet.user.avatar}", class: "avatar" %>
+          <%= @tweet.user.name%>
         <% end %>
-      </span>
-      <%= render "comments/index" %>
+        <div class="tweet-show__title__top--edit">
+          <% if current_user_has?(@tweet) %>
+            <%= link_to '編集', edit_tweet_path(@tweet.id),data: {"turbolinks" => false} %>
+            <%= link_to '削除', tweet_path(@tweet.id), method: :delete, data: { confirm: '削除してよろしいですか？' } %>
+          <% end %>
+        </div>
+      </div>
+      <h1 class="tweet-show__title--body">
+        <%= @tweet.title %>
+      </h1>
+      <div class="tweet-show__title--date">
+        <%= @tweet.updated_at.strftime("%Y-%m-%d %H:%M") %>
+      </div>
+      <div class="tweet-show__content">
+        <div class="tweet-show__content--text">
+          <span>
+            <%= @tweet.text %>
+            <% if @tweet.image? %>
+              <div class="tweet-show__content--imageBox">
+                <%= image_tag "#{@tweet.image}", class: "tweet-show__content--image" %>
+              </div>
+            <% end %>
+          </span>
+        </div>
+        <div class="tweet-show__content--tags">
+          <%= render '/tweets/tag_list', tag_list: @tweet.tag_list %>
+        </div>
+        <div class="tweet-show__content__like">
+          <div id="like_<%= @tweet.id %>">
+            <%= render 'likes/like', tweet: @tweet %>
+          </div>
+          <div class="tweet-show__content__like--link">
+            <% if @tweet.liked_users.present? %>
+              この記事にいいねした人を見る
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="tweet-show__comment">
+        <div id="comment_form">
+          <%= render "comments/form" %>
+        </div>
+        <div id="comment_area">
+          <%= render "comments/top" %>
+        </div>
+      </div>
     </div>
-    <div class="tweet-show__content--tags">
-      <%= render '/tweets/tag_list', tag_list: @tweet.tag_list %>
-    </div>
-  </div>
-  <div class="like">
-  <div id="like_<%= @tweet.id %>">
-    <%= render 'likes/like', tweet: @tweet %>
   </div>
 </div>
-
+<div class="tweet-show__content__like--bgc">
+  <div class="jc-center">
+    <ul class="tweet-show__content__like__modal">
+      <% @tweet.liked_users.each do |user| %>
+        <li>
+          <%= link_to  user_path(user.id), class: "tweet-show__content__like--user" do %>
+            <%= image_tag "#{user.avatar}", class: "avatar" %>
+            <div class="tweet-show__content__like--user--name">
+              <%= user.name %>さん
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+      <div class="tweet-show__content__like--close">
+        <button type="button" class="btn btn-dark">閉じる</button>
+      </div>
+    </ul>
+  </div>
 </div>

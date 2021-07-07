@@ -1,0 +1,10 @@
+<div class="tweet-show__comment__title">
+  <div class="tweet-show__comment--count">
+    コメント(
+      <%= @comments.count %>
+      )
+  </div>
+</div>
+<ul class="tweet-show__comment__items">
+  <%= render "comments/comment" %>
+</ul>
