@@ -17,10 +17,11 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = current_user.tweets.build(tweet_params)
+    gon.tweet_tags = @tweet.tag_list
     if @tweet.save
-      flash[:success] = "投稿しました！"
-      redirect_to root_url
+      redirect_to root_url, notice: '投稿しました！'
     else
+      flash.now[:alert] = "文字数を確認してください。"
       render 'tweets/new'
     end
   end
