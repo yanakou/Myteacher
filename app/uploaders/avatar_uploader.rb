@@ -9,8 +9,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
   storage :file
   # storage :fog
 
-  # 画像の上限を700pxにする
-  process :resize_to_limit => [50, 50]
 
   # 保存形式をJPGにする
   process :convert => 'jpg'
