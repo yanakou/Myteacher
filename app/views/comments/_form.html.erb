@@ -1,8 +1,18 @@
 <% if logged_in? %>
   <%= form_with(model: [@tweet, @comment], remote: true) do |form|  %>
-    <%= form.text_area :content, class: 'textarea' %>
-    <%= form.submit value: "送信する" %>
+    <div class="tweet-show__comment__form__top">
+      <%= image_tag "#{current_user.avatar}", class: "avatar" %>
+      <div class="tweet-show__comment__form--title">
+        コメントする
+      </div>
+    </div>
+    <%= form.text_area :content, class: 'textarea tweet-show__comment__form--body' %>
+    <div class="tweet-show__comment__form--submit">
+      <%= form.submit value: "投稿する",  class: "btn btn-success" %>
+    </div>
   <% end %>
 <% else %>
-  <h2>コメントの投稿にはログインが必要です。</h2>
+  <div class="tweet-show__comment__form--text">
+    コメントの投稿にはログインが必要です。
+  </div>
 <% end %>
