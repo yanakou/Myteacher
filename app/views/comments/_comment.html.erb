@@ -1,17 +1,26 @@
-<% @comments.each do |comment| %>
+<li class='tweet-show__comment__item'>
   <div id="comment_<%= comment.id %>">
-    <%= comment.user.name %>
-    <%= comment.content %>
-    <%= comment.updated_at.strftime("%Y-%m-%d %H:%M") %>
-  </div>
-  <div class="list-inline-item">
-    <% if logged_in? && comment.user_id == current_user.id %>
-      <%= link_to edit_tweet_comment_path(comment.tweet_id, comment.id),remote: true do %>
-        <input type="submit" value="編集"></input>
+    <div class='tweet-show__comment__item__top'>
+      <%= link_to user_path(comment.user.id) do %>
+        <div class="tweet-show__comment__item__top--user">
+          <%= image_tag "#{comment.user.avatar}", class: "avatar" %>
+          <div class="tweet-show__comment__item__top--nickname">
+            <%= comment.user.name %>
+          </div>
+        </div>
       <% end %>
-      <%= link_to tweet_comment_path(comment.tweet_id, comment.id), method: :delete, remote: true, data: { confirm: '削除してもいいですか？' } do %>
-        <input type="submit" value="削除"></input>
+      <div class="tweet-show__comment__item__top--date">
+        <%= comment.created_at.strftime("%Y-%m-%d %H:%M") %>
+      </div>
+    </div>
+    <div class="tweet-show__comment__item--text">
+      <%= simple_format(comment.content) %>
+    </div>
+    <div class="tweet-show__comment__item--edit">
+      <% if current_user_has?(comment) %>
+        <%= link_to "編集", edit_tweet_comment_path(comment.tweet_id, comment.id),remote: true, class: "tweet-show__comment__item--edit--left" %>
+        <%= link_to "削除", tweet_comment_path(comment.tweet_id, comment.id), method: :delete, remote: true, data: { confirm: '削除してもいいですか？' } %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-<% end %>
+</li>
