@@ -4,9 +4,7 @@
       <p class="tweet-index__title--text"></p>
     </div>
     <%= render @tweets %>
-  </ul>
-  <div class="tweet-index--footer">
     <%= paginate @tweets %>
-  </div>
+  </ul>
 </div>
 <%= render 'tweets/new_btn' %>
