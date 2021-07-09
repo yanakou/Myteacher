@@ -1,46 +1,46 @@
-<h1>Welcome to the tweet</h1>
-<h1 id="hello">Hello World</h1>
-
-
-
-<%= form_with(model: @tweet, local: true, id: "tweet-form") do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="text-center">
-    <div class="field">
-      <%= f.text_field :title, placeholder: "タイトルを入力してください" %>
-    </div>
-    <div>
-      <%= f.label "0/1000", for: "md-textarea", id: "tweet-text-count" %>
-      <%= f.text_area :text, placeholder: "本文を入力してください", id: "md-textarea", required: "require" %>
-    </div>
-  </div>
-  <div class="text-center">
-    <br>
-    <div class='tweet-form--tags'>タグを追加</div>
-    <div>
-      <ul id='tweet-tags'></ul>
-    </div>
-    <div class="tweet-form__bonus__preview--title">
-      イメージ写真
-    </div>
-    <div class="tweet-form__bonus__preview">
-      <div class="label-form">
-        <div class="field image">
-        <div id='img_field' onclick="$('#file').click()">
-          <% if @tweet.image.present? %>
-            <%= image_tag "#{@tweet.image.url}", class: "tweet-form__bonus__preview--image" %>
-          <% else %>
-            <i class="fas fa-camera fa-6x tweet-form__bonus__preview--icon"></i>
-          <% end %>
+<div class="wrapper">
+  <%= form_with(model: @tweet, local: true, id: "tweet-form") do |f| %>
+    <div class="tweet-form">
+      <div class="tweet-form__title">
+        <%= f.text_field :title, class: "tweet-form__title--body", placeholder: "タイトルを入力してください(30文字以内)", required: "require" %>
+      </div>
+      <div class="tweet-form__text__btn">
+        <div class="btn btn-secondary rounded-pill disabled" id="markdown">編集</div>
+        <div class="btn btn-secondary rounded-pill" id="preview">プレビュー</div>
+      </div>
+      <div class="tweet-form__text">
+        <div id="preview-area">
         </div>
+        <div>
+          <%= f.label "0/1000", for: "md-textarea", id: "tweet-text-count" %>
+          <%= f.text_area :text, class: "tweet-form__text--body", placeholder: "本文を入力してください", id: "md-textarea", required: "require" %>
         </div>
-        <%= f.file_field :image, class: "image", style: "display:none;", id: "file" %>
+      </div>
+      <br>
+      <div class='tweet-form--tags'>タグを追加</div>
+      <div>
+        <ul id='tweet-tags'></ul>
+      </div>
+      <div class="tweet-form__bonus__preview--title">
+        イメージ写真
+      </div>
+      <div class="tweet-form__bonus__preview">
+        <div class="label-form">
+          <div class="field image">
+          <div id='img_field' onclick="$('#file').click()">
+            <% if @tweet.image.present? %>
+              <%= image_tag "#{@tweet.image.url}", class: "tweet-form__bonus__preview--image" %>
+            <% else %>
+              <i class="fas fa-camera fa-6x tweet-form__bonus__preview--icon"></i>
+            <% end %>
+          </div>
+          </div>
+          <%= f.file_field :image, class: "image", style: "display:none;", id: "file" %>
+        </div>
+      </div>
+      <div class="tweet-form__submit">
+        <%= f.submit "投稿する", class: "btn btn-primary" %>
       </div>
     </div>
-    <div class="center">
-      <%= f.submit "投稿する", class: "btn btn-primary" %>
-    </div>
-  </div>
-
-<% end %>
-
+  <% end %>
+</div>
