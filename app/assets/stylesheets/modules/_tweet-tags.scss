@@ -1,0 +1,49 @@
+
+.tags{
+  margin: 4px;
+}
+
+.tweet-tags{
+  @include common-sizing;
+  margin: 30px auto;
+  border: 1px solid $header_border;
+  background-color: white;
+  box-shadow: 0px 4px 6px #ccc;
+  &__title{
+    height: 70px;
+    text-align: center;
+    line-height: 70px;
+    color: $header_tags;
+    border-bottom: 1px solid $header_border;
+    // display: flex;
+    &--body{
+      font-size: 19px;
+      &:hover{
+        color: black;
+      }
+    }
+    &__left{
+      // padding-right: 260px;
+      // padding-left: 20px;
+    }
+  }
+  &__items{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__item{
+    display: inline-block;
+    // width: 33.3%;
+    padding: 30px;
+    &--btn{
+      // width: 60%;
+    }
+    &--link{
+      display: flex;
+    }
+    &--body{
+      color: black;
+      padding: 8px;
+    }
+  }
+}
