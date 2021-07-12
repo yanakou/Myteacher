@@ -15,6 +15,7 @@ require("tagit")
 require("tweet_form")
 require("header")
 require("tweet_show")
+require("notification")
 import "bootstrap"
 import '@fortawesome/fontawesome-free/js/all';
 
