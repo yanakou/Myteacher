@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     member do
         get :likes, :following, :followers
     end
+    get 'timeline', on: :collection
   end
 
   resources :relationships, only: [:create, :destroy]
