@@ -26,6 +26,7 @@
                   <ul class="header-top__box">
                     <li><%= link_to "マイページを表示", user_path(current_user), class: "header-top__box--content"%></li>
                     <li class="header-top__box--borderTop"><%= link_to "メッセージ", rooms_path, class: "header-top__box--content"%></li>
+                    <li class="header-top__box--borderTop"><%= link_to "タイムライン",  timeline_users_path, class: "header-top__box--content"%></li>
                     <li class="header-top__box--borderTop"><%= link_to "ユーザー一覧", users_path, class: "header-top__box--content" %></li>
                     <li class="header-top__box--borderTop"><%= link_to "人気投稿", likes_tweets_path, class: "header-top__box--content" %></li>
                     <li class="header-top__box--borderTop"><%= link_to "ログアウト", logout_path, method: :delete, class: "header-top__box--content" %></li>
