@@ -23,7 +23,7 @@
                   <%= f.submit "削除", class: "btn rounded-pill" %>
                 <% end %>
                 <span class="room-show__item--message">
-                  <%= m.message %>
+                  <%=safe_join(m.message.split("\n"),tag(:br))%>
                 </span>
               </div>
               <div class="room-show__item__right">
@@ -38,7 +38,7 @@
                   <%= image_tag "#{m.user.avatar}", class:"avatar mt05rem" %>
                 <% end %>
                 <span class="room-show__item--message">
-                  <%= m.message %>
+                  <%=safe_join(m.message.split("\n"),tag(:br))%>
                 </span>
               </div>
               <div class="room-show__item__left">

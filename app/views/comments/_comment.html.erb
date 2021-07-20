@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="tweet-show__comment__item--text">
-      <%= simple_format(comment.content) %>
+      <%= safe_join(comment.content.split("\n"),tag(:br)) %>
     </div>
     <div class="tweet-show__comment__item--edit">
       <% if current_user_has?(comment) %>
