@@ -22,7 +22,7 @@
       <div class="tweet-show__content">
         <div class="tweet-show__content--text">
           <span>
-            <%= @tweet.text %>
+            <%=safe_join(@tweet.text.split("\n"),tag(:br))%>
             <% if @tweet.image? %>
               <div class="tweet-show__content--imageBox">
                 <%= image_tag "#{@tweet.image}", class: "tweet-show__content--image" %>
