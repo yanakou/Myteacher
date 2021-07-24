@@ -4,6 +4,7 @@ FactoryBot.define do
     email {'user@example.com'}
     password {'000000'}
     password_confirmation {'000000'}
+    avatar { File.open("#{Rails.root}/app/assets/images/default.png") }
     admin {true}
   end
 
