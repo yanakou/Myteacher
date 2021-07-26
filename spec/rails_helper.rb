@@ -47,6 +47,13 @@ RSpec.configure do |config|
   # login_helperを利用可能にする
   config.include LoginHelper
 
+  # テスト時に画像を保存しない
+  config.after(:all) do
+    if Rails.env.test?
+      FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/test"])
+    end
+  end
+
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
