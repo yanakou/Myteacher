@@ -31,13 +31,18 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   
-  
+  # テスト時の画像保存場所を指定
   def store_dir
     if Rails.env.test?
       "uploads/test/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     else
       "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end
+  end
+
+  # テスト時のキャッシュの保存場所を指定
+  def cache_dir
+    "uploads/test/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
