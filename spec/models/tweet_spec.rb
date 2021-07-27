@@ -93,4 +93,47 @@ RSpec.describe Tweet, type: :model do
       end
     end
   end
+
+  describe "各モデルとのアソシエーション" do
+    let(:association) do
+      described_class.reflect_on_association(target)
+    end
+    let(:tweet) { create(:tweet) }
+
+    context "Likeモデルとのアソシエーション" do
+      let(:target) { :likes }
+      it "Likeとの関連付けはhas_manyであること" do
+        expect(association.macro).to eq :has_many
+      end
+
+      it "Tweetが削除されたらLikeも削除されること" do
+        like = create(:like, tweet_id: tweet.id)
+        expect { tweet.destroy }.to change(Like, :count).by(-1)
+      end
+    end
+
+    context "Commentsモデルとのアソシエーション" do
+      let(:target) { :comments }
+      it "Commentとの関連付けはhas_manyであること" do
+        expect(association.macro).to eq :has_many
+      end
+
+      it "Tweetが削除されたらCommentも削除されること" do
+        comment = create(:comment, tweet_id: tweet.id)
+        expect { tweet.destroy }.to change(Comment, :count).by(-1)
+      end
+    end
+
+    context "Notificationsモデルとのアソシエーション" do
+      let(:target) { :notifications }
+      it "Notificationとの関連付けはhas_manyであること" do
+        expect(association.macro).to eq :has_many
+      end
+
+      it "Tweetが削除されたらNotificationも削除されること" do
+        notification = create(:notification, tweet_id: tweet.id, visitor_id: 1, visited_id: 1)
+        expect { tweet.destroy }.to change(Notification, :count).by(-1)
+      end
+    end
+  end
 end
