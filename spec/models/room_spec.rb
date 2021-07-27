@@ -7,8 +7,8 @@ RSpec.describe Room, type: :model do
     end
 
     context "アソシエーションのテスト" do
-      let(:target) { :rooms }
-      it "Roomsとの関連付けはhas_manyであること" do
+      let(:target) { :entries }
+      it "Entriesとの関連付けはhas_manyであること" do
         expect(association.macro).to eq :has_many
       end
 
