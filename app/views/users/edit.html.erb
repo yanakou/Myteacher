@@ -1,6 +1,9 @@
 <div class="wrapper">
   <div class="login">
-    <%= form_for(current_user) do |f| %>
+    <%= form_with(model: @user, local: true) do |f| %>
+      <div class="center">
+        <%= render 'shared/error_messages', object: f.object %>
+      </div>
       <div class="login__title">
         ユーザー編集
       </div>

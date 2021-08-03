@@ -15,6 +15,13 @@ FactoryBot.define do
     password_confirmation {'000000'}
   end
 
+  factory :user3, class: User do
+    name {'user3'}
+    email {'user3@example.com'}
+    password {'000000'}
+    password_confirmation {'000000'}
+  end
+
   factory :users, class: User do
     sequence(:name){|n| "user_#{n}"}
     sequence(:email){|n| "user_#{n}@example.com"}

@@ -41,6 +41,142 @@ RSpec.describe "Users", type: :request do
     end
   end
 
+  describe 'GET #new' do
+    it 'リクエストが成功すること' do
+      get signup_path
+      expect(response.status).to eq 200
+    end
+  end
+
+  describe 'GET #edit' do
+    before do
+      @user2 = create(:user2)
+      log_in_as(@user2)
+    end
+
+    it 'リクエストが成功すること' do
+      get edit_user_path(@user2.id)
+      expect(response.status).to eq 200
+    end
+
+    it 'ユーザー名が表示されていること' do
+      get edit_user_path(@user2.id)
+      expect(response.body).to include 'user2'
+    end
+
+    it 'メールアドレスが表示されていること' do
+      get edit_user_path(@user2.id)
+      expect(response.body).to include 'user2@example.com'
+    end
+  end
+
+  describe 'POST #create' do
+    context 'パラメータが妥当な場合' do
+      it 'リクエストが成功すること' do
+        post users_path, params: { user: FactoryBot.attributes_for(:user) }
+        expect(response.status).to eq 302
+      end
+
+      it 'ユーザーが登録されること' do
+        expect do
+          post users_path, params: { user: FactoryBot.attributes_for(:user) }
+        end.to change(User, :count).by(1)
+      end
+
+      it 'リダイレクトすること' do
+        post users_path, params: { user: FactoryBot.attributes_for(:user) }
+        expect(response).to redirect_to User.last
+      end
+    end
+
+    context 'パラメータが不正な場合' do
+      it 'リクエストが成功すること' do
+        post users_path, params: { user: FactoryBot.attributes_for(:user, name: nil) }
+        expect(response.status).to eq 200
+      end
+
+      it 'ユーザーが登録されないこと' do
+        expect do
+          post users_path, params: { user: FactoryBot.attributes_for(:user, name: nil) }
+        end.to_not change(User, :count)
+      end
+
+      it 'エラーが表示されること' do
+        post users_path, params: { user: FactoryBot.attributes_for(:user, name: nil) }
+        expect(response.body).to include '名前を入力してください'
+      end
+    end
+  end
+
+  describe 'PUT #update' do
+    before do
+      @user2 = create(:user2)
+      log_in_as(@user2)
+    end
+
+    context 'パラメータが妥当な場合' do
+      it 'リクエストが成功すること' do
+        put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3) }
+        expect(response.status).to eq 302
+      end
+
+      it 'ユーザー名が更新されること' do
+        expect do
+          put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3) }
+        end.to change { User.find(@user2.id).name }.from('user2').to('user3')
+      end
+
+      it 'リダイレクトすること' do
+        put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3) }
+        expect(response).to redirect_to User.last
+      end
+    end
+
+    context 'パラメータが不正な場合' do
+      it 'リクエストが成功すること' do
+        put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3, name: nil) }
+        expect(response.status).to eq 200
+      end
+
+      it 'ユーザー名が変更されないこと' do
+        expect do
+          put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3, name: nil) }
+        end.to_not change(User.find(@user2.id), :name)
+      end
+
+      it 'エラーが表示されること' do
+        put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3, name: nil) }
+        expect(response.body).to include '名前を入力してください'
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    let!(:user) { create(:user) }
+    before do
+      log_in_as(user)
+    end
+
+    it 'リクエストが成功すること' do
+      delete user_url(user.id)
+      expect(response.status).to eq 302
+    end
+
+    it 'ユーザーが削除されること' do
+      expect do
+        delete user_url(user.id)
+      end.to change(User, :count).by(-1)
+    end
+
+    it 'ユーザー一覧にリダイレクトすること' do
+      delete user_url(user.id)
+      expect(response).to redirect_to users_url
+    end
+  end
+
+
+
+
 
   # before do
   #   @user = create(:user)
