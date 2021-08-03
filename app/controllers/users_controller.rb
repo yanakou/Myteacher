@@ -36,6 +36,7 @@ class UsersController < ApplicationController
       flash[:success] = "プロフィールを変更しました"
       redirect_to @user
     else
+      flash.now[:alert] = "入力内容に誤りがあります。入力漏れ、文字数をご確認ください。"
       render 'edit'
     end
   end

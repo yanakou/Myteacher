@@ -40,23 +40,23 @@ RSpec.describe Like, type: :model do
     end
   end
 
-  # describe "各モデルとのアソーシエーション" do
-  #   let(:association) do
-  #     described_class.reflect_on_association(target)
-  #   end
+  describe "各モデルとのアソーシエーション" do
+    let(:association) do
+      described_class.reflect_on_association(target)
+    end
 
-  #   context "Userモデルとのアソシエーション" do
-  #     let(:target) { :user }
-  #     it "Userとの関連付けはbelongs_toであること" do
-  #       expect(association.macro).to  eq :belongs_to
-  #     end
-  #   end
+    context "Userモデルとのアソシエーション" do
+      let(:target) { :user }
+      it "Userとの関連付けはbelongs_toであること" do
+        expect(association.macro).to  eq :belongs_to
+      end
+    end
 
-  #   context "Tweetモデルとのアソシエーション" do
-  #     let(:target) { :tweet }
-  #     it "Tweetとの関連付けはbelongs_toであること" do
-  #       expect(association.macro).to  eq :belongs_to
-  #     end
-  #   end
-  # end
+    context "Tweetモデルとのアソシエーション" do
+      let(:target) { :tweet }
+      it "Tweetとの関連付けはbelongs_toであること" do
+        expect(association.macro).to  eq :belongs_to
+      end
+    end
+  end
 end
