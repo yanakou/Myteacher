@@ -39,25 +39,18 @@ RSpec.describe "Tweets", type: :request do
     end
   end
 
-  # context "非ログイン時" do
-  #   it "newアクション送信後、ログインページにリダイレクトすること" do
-  #     get new_tweet_path
-  #     expect(response).to redirect_to login_url
-  #   end
+  describe 'GET #new' do
+    before do
+      user = create(:user)
+      log_in_as(user)
+    end
+    
+    it 'リクエストが成功すること' do
+      get new_tweet_path
+      expect(response.status).to eq 200
+    end
+  end
 
-  #   it "createアクション送信後、ログインページにリダイレクトすること" do
-  #     expect do
-  #       post tweets_path, params: { tweet: { title: "Lorem ipsum", text: "Hello! World!" } }
-  #     end.not_to change{Tweet.count}
-  #     expect(response).to redirect_to login_url
-  #   end
-
-  #   it "destroyアクション送信後、ログインページにリダイレクトされること" do
-  #     expect do
-  #       delete tweet_path(@tweet)
-  #     end.not_to change{Tweet.count}
-  #     expect(response).to redirect_to login_url
-  #   end
-  # end
+  
   
 end
