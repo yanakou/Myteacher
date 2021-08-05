@@ -17,6 +17,28 @@ RSpec.describe "Tweets", type: :request do
     end
   end
 
+  describe 'GET #show' do
+    before do
+      @tweet1 = create(:tweet1)
+    end
+
+    it 'リクエストが成功すること' do
+      get tweet_path(@tweet1.id)
+      expect(response.status).to eq 200
+    end
+
+    it 'title名が表示されていること' do
+      get tweet_path(@tweet1.id)
+      expect(response.body).to include ("tweet1")
+    end
+
+    context 'tweetが存在しない場合' do
+      subject { -> { get tweet_path 1} }
+
+      it { is_expected.to raise_error ActiveRecord::RecordNotFound }
+    end
+  end
+
   # context "非ログイン時" do
   #   it "newアクション送信後、ログインページにリダイレクトすること" do
   #     get new_tweet_path
