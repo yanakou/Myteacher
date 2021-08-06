@@ -18,17 +18,15 @@ RSpec.describe "Tweets", type: :request do
   end
 
   describe 'GET #show' do
-    before do
-      @tweet1 = create(:tweet1)
-    end
+    let(:tweet1){create(:tweet1)}
 
     it 'リクエストが成功すること' do
-      get tweet_path(@tweet1.id)
+      get tweet_path(tweet1.id)
       expect(response.status).to eq 200
     end
 
     it 'title名が表示されていること' do
-      get tweet_path(@tweet1.id)
+      get tweet_path(tweet1.id)
       expect(response.body).to include ("tweet1")
     end
 
@@ -98,6 +96,66 @@ RSpec.describe "Tweets", type: :request do
 
       it 'ログイン画面にリダイレクトすること' do
         get new_tweet_path
+        expect(response).to redirect_to login_url
+      end
+    end
+  end
+
+  describe 'GET #create' do
+    context 'ログインしている場合' do
+      let(:user2){create(:user2)}
+
+      before do
+        log_in_as(user2)
+      end
+
+      context 'パラメータが妥当な場合' do
+        it 'リクエストが成功すること' do
+          post tweets_path, params: { tweet: FactoryBot.attributes_for(:tweet1) }
+          expect(response.status).to eq 302
+        end
+
+        it '投稿が完了すること' do
+          expect do
+            post tweets_path, params: { tweet: FactoryBot.attributes_for(:tweet1) }
+          end.to change(Tweet, :count).by(1)
+        end
+
+        it 'リダイレクトすること' do
+          post tweets_path, params: { tweet: FactoryBot.attributes_for(:tweet1) }
+          expect(response).to redirect_to root_url
+        end
+      end
+
+      context 'パラメータが不正な場合' do
+        it 'リクエストが成功すること' do
+          post tweets_path, params: { tweet: FactoryBot.attributes_for(:tweet1, title: nil) }
+          expect(response.status).to eq 200
+        end
+  
+        it '投稿が完了しないこと' do
+          expect do
+            post tweets_path, params: { tweet: FactoryBot.attributes_for(:tweet1, title: nil) }
+          end.to_not change(Tweet, :count)
+        end
+  
+        it 'エラーが表示されること' do
+          post tweets_path, params: { tweet: FactoryBot.attributes_for(:tweet1, title: "a"*41 ) }
+          expect(response.body).to include 'Titleは40文字以内で入力してください'
+        end
+      end
+    end
+
+    context 'ログインしていない場合' do
+      let(:user2){create(:user2)}
+
+      it 'リクエストは302 OKとなること' do
+        post tweets_path, params: { tweet: FactoryBot.attributes_for(:tweet1) }
+        expect(response.status).to eq 302
+      end
+
+      it 'ログイン画面にリダイレクトすること' do
+        post tweets_path, params: { tweet: FactoryBot.attributes_for(:tweet1) }
         expect(response).to redirect_to login_url
       end
     end
