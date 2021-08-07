@@ -160,6 +160,52 @@ RSpec.describe "Tweets", type: :request do
       end
     end
   end
+
+  describe 'PUT #update' do
+    context 'ログインしている場合' do
+      before do
+        @user2 = create(:user2)
+        log_in_as(@user2)
+      end
+
+      context 'パラメータが妥当な場合' do
+        it 'リクエストが成功すること' do
+          put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3) }
+          expect(response.status).to eq 302
+        end
+
+        it 'ユーザー名が更新されること' do
+          expect do
+            put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3) }
+          end.to change { User.find(@user2.id).name }.from('user2').to('user3')
+        end
+
+        it 'リダイレクトすること' do
+          put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3) }
+          expect(response).to redirect_to User.last
+        end
+      end
+
+      context 'パラメータが不正な場合' do
+        it 'リクエストが成功すること' do
+          put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3, name: nil) }
+          expect(response.status).to eq 200
+        end
+
+        it 'ユーザー名が変更されないこと' do
+          expect do
+            put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3, name: nil) }
+          end.to_not change(User.find(@user2.id), :name)
+        end
+
+        it 'エラーが表示されること' do
+          put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3, name: nil) }
+          expect(response.body).to include '名前を入力してください'
+        end
+      end
+    end
+  end
+
   
   # context "非ログイン時" do
   #   it "newアクション送信後、ログインページにリダイレクトすること" do
