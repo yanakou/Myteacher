@@ -163,44 +163,46 @@ RSpec.describe "Tweets", type: :request do
 
   describe 'PUT #update' do
     context 'ログインしている場合' do
-      before do
-        @user2 = create(:user2)
-        log_in_as(@user2)
-      end
+        before do
+          @tweet1 = create(:tweet1)
+          @user2 = @tweet1.user
+          log_in_as(@user2)
+        end
+      
 
       context 'パラメータが妥当な場合' do
         it 'リクエストが成功すること' do
-          put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3) }
+          put tweet_path(@tweet1.id), params: { tweet: FactoryBot.attributes_for(:tweet2) }
           expect(response.status).to eq 302
         end
 
-        it 'ユーザー名が更新されること' do
+        it 'title名が更新されること' do
           expect do
-            put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3) }
-          end.to change { User.find(@user2.id).name }.from('user2').to('user3')
+            put tweet_path(@tweet1.id), params: { tweet: FactoryBot.attributes_for(:tweet2) }
+          end.to change { Tweet.find(@tweet1.id).title }.from('tweet1').to('tweet2')
         end
 
         it 'リダイレクトすること' do
-          put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3) }
-          expect(response).to redirect_to User.last
+          put tweet_path(@tweet1.id), params: { tweet: FactoryBot.attributes_for(:tweet2) }
+          expect(response).to redirect_to tweet_path(@tweet1.id)
         end
       end
 
       context 'パラメータが不正な場合' do
         it 'リクエストが成功すること' do
-          put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3, name: nil) }
+          put tweet_path(@tweet1.id), params: { tweet: FactoryBot.attributes_for(:tweet2, title: nil) }
           expect(response.status).to eq 200
         end
 
-        it 'ユーザー名が変更されないこと' do
+        it 'title名が変更されないこと' do
           expect do
-            put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3, name: nil) }
-          end.to_not change(User.find(@user2.id), :name)
+            put tweet_path(@tweet1.id), params: { tweet: FactoryBot.attributes_for(:tweet2, title: nil) }
+          end.to_not change(Tweet.find(@tweet1.id), :title)
         end
 
         it 'エラーが表示されること' do
-          put user_path(@user2.id), params: { user: FactoryBot.attributes_for(:user3, name: nil) }
-          expect(response.body).to include '名前を入力してください'
+          put tweet_path(@tweet1.id), params: { tweet: FactoryBot.attributes_for(:tweet1, title: "a"*41 ) }
+          expect(response.body).to include 'Titleは40文字以内で入力してください'
         end
       end
     end
