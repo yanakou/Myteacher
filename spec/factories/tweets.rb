@@ -17,4 +17,13 @@ FactoryBot.define do
     association :user, factory: :user2
   end
 
+  factory :tweet2, class: Tweet do
+    title         { 'tweet2' }
+    text          { 'tweet2を投稿します' }
+    image         { File.open("#{Rails.root}/app/assets/images/default.png") }
+    created_at    { Faker::Time.between(from: DateTime.now - 2, to: DateTime.now) }
+    # user
+    association :user, factory: :user3
+  end
+
 end
