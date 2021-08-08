@@ -222,6 +222,49 @@ RSpec.describe "Tweets", type: :request do
     end
   end
 
+  describe 'DELETE #destroy' do
+    context 'ログインしている場合' do
+      before do
+        @tweet1 = create(:tweet1)
+        @user2 = @tweet1.user
+        log_in_as(@user2)
+      end
+
+      it 'リクエストが成功すること' do
+        delete tweet_path(@tweet1.id)
+        expect(response.status).to eq 302
+      end
+
+      it '投稿が削除されること' do
+        expect do
+          delete tweet_path(@tweet1.id)
+        end.to change(Tweet, :count).by(-1)
+      end
+
+      it '投稿一覧にリダイレクトすること' do
+        delete tweet_path(@tweet1.id)
+        expect(response).to redirect_to root_url
+      end
+    end
+
+    context 'ログインしていない場合' do
+      before do
+        @tweet1 = create(:tweet1)
+      end
+
+      it 'リクエストは302 OKとなること' do
+        delete tweet_path(@tweet1.id)
+        expect(response.status).to eq 302
+      end
+
+      it 'ログイン画面にリダイレクトすること' do
+        delete tweet_path(@tweet1.id)
+        expect(response).to redirect_to login_url
+      end
+    end
+  end
+
+
   
   # context "非ログイン時" do
   #   it "newアクション送信後、ログインページにリダイレクトすること" do
