@@ -147,8 +147,6 @@ RSpec.describe "Tweets", type: :request do
     end
 
     context 'ログインしていない場合' do
-      let(:user2){create(:user2)}
-
       it 'リクエストは302 OKとなること' do
         post tweets_path, params: { tweet: FactoryBot.attributes_for(:tweet1) }
         expect(response.status).to eq 302
@@ -201,9 +199,25 @@ RSpec.describe "Tweets", type: :request do
         end
 
         it 'エラーが表示されること' do
-          put tweet_path(@tweet1.id), params: { tweet: FactoryBot.attributes_for(:tweet1, title: "a"*41 ) }
+          put tweet_path(@tweet1.id), params: { tweet: FactoryBot.attributes_for(:tweet2, title: "a"*41 ) }
           expect(response.body).to include 'Titleは40文字以内で入力してください'
         end
+      end
+    end
+
+    context 'ログインしていない場合' do
+      before do
+        @tweet1 = create(:tweet1)
+      end
+
+      it 'リクエストは302 OKとなること' do
+        put tweet_path(@tweet1.id), params: { tweet: FactoryBot.attributes_for(:tweet2) }
+        expect(response.status).to eq 302
+      end
+
+      it 'ログイン画面にリダイレクトすること' do
+        put tweet_path(@tweet1.id), params: { tweet: FactoryBot.attributes_for(:tweet2) }
+        expect(response).to redirect_to login_url
       end
     end
   end
