@@ -38,4 +38,20 @@ RSpec.describe "Sessions", type: :request do
     end
   end
 
+  describe 'POST #destroy' do
+    before do
+      @user2 = create(:user2)
+      log_in_as(@user2)
+    end
+
+    it 'リクエストが成功すること' do
+      delete logout_path(@user2.id)
+      expect(response.status).to eq 302
+    end
+
+    it 'リダイレクトすること' do
+      delete logout_path(@user2.id)
+      expect(response).to redirect_to root_url
+    end
+  end
 end
