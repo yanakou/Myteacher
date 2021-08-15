@@ -101,7 +101,7 @@ RSpec.describe "Tweets", type: :request do
     end
   end
 
-  describe 'GET #create' do
+  describe 'POST #create' do
     context 'ログインしている場合' do
       let(:user2){create(:user2)}
 
