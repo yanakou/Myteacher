@@ -161,11 +161,11 @@ RSpec.describe "Tweets", type: :request do
 
   describe 'PUT #update' do
     context 'ログインしている場合' do
-        before do
-          @tweet1 = create(:tweet1)
-          @user2 = @tweet1.user
-          log_in_as(@user2)
-        end
+      before do
+        @tweet1 = create(:tweet1)
+        @user2 = @tweet1.user
+        log_in_as(@user2)
+      end
       
 
       context 'パラメータが妥当な場合' do

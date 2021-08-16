@@ -15,9 +15,11 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if @comment.update(comment_params)
-        get_all_comments
-    end
+    @comment.update(comment_params)
+    get_all_comments
+    # if @comment.update(comment_params)
+    #     get_all_comments
+    # end
   end
 
 
