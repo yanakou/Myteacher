@@ -46,9 +46,54 @@ RSpec.describe "Comments", type: :request do
       expect(response.status).to eq 200
     end
 
-    it 'contentが表示されていること' do
+    it 'コメントが表示されていること' do
       get edit_tweet_comment_path(@tweet.id, @comment.id), xhr: true
       expect(response.body).to include @comment.content
+    end
+  end
+
+  describe 'PUT #update' do
+    before do
+      @comment = create(:comment)
+      @tweet = @comment.tweet
+    end
+    
+    context 'パラメータが妥当な場合' do
+      it 'リクエストが成功すること' do
+        put tweet_comment_path(@tweet.id, @comment.id), xhr: true, params: { comment: {content: 'Hello!'}}
+        expect(response.status).to eq 200
+      end
+
+      it 'コメントが更新されること' do
+        put tweet_comment_path(@tweet.id, @comment.id), xhr: true, params: { comment: {content: 'Hello!'}}
+        expect(response.body).to include 'Hello!'
+      end
+    end
+
+    context 'パラメータが不正な場合' do
+      it 'コメントが更新されないこと' do
+        expect do
+          put tweet_comment_path(@tweet.id, @comment.id), xhr: true, params: { comment: {content: nil}}
+        end.to_not change(Comment.find(@comment.id), :content)
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    before do
+      @comment = create(:comment)
+      @tweet = @comment.tweet
+    end
+
+    it 'リクエストが成功すること' do
+      delete tweet_comment_path(@tweet.id, @comment.id), xhr: true
+      expect(response.status).to eq 200
+    end
+
+    it 'コメントが削除されること' do
+      expect do
+        delete tweet_comment_path(@tweet.id, @comment.id), xhr: true
+      end.to change(Comment, :count).by(-1)
     end
   end
 end
