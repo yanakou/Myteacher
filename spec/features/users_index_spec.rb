@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "ユーザー一覧ページ", type: :feature do
   before do
-    @admin = create(:user, name: 'example', email: 'user@example.com')
+    @admin = create(:user)
     @non_admin = create(:user2)
     30.times{FactoryBot.create(:users)}
   end
@@ -10,8 +10,8 @@ RSpec.describe "ユーザー一覧ページ", type: :feature do
   context "管理者としてログイン" do
     it "ユーザー一覧ページに、ページネーションが含まれていること" do
       visit login_path
-      fill_in 'session[email]', with: 'user@example.com'
-      fill_in 'session[password]', with: '000000'
+      fill_in 'session[email]', with: @admin.email
+      fill_in 'session[password]', with: @admin.password
       click_button 'ログインする'
       visit users_path
       expect(page).to have_css '.pagination'
