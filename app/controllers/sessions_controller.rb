@@ -17,4 +17,10 @@ class SessionsController < ApplicationController
     log_out
     redirect_to root_url
   end
+
+  def new_guest
+    user = User.find_by(email: "guest@user")
+    log_in(user)
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
 end
