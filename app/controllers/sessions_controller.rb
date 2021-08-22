@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
   end
 
   def new_guest
-    user = User.find_by(email: "guest@user")
+    user = User.find_by(email: "guest.user@guest.com")
     log_in(user)
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
