@@ -9,4 +9,12 @@
       </div>
     </div>
   <% end %>
+<% else %>
+  <%= link_to guest_sign_in_path, method: :post, class: "new-btn" do %>
+    <div class="new-btn__session">
+      <div class="new-btn__session--text">
+        <p>ゲストログイン</p>
+      </div>
+    </div>
+  <% end %>
 <% end %>
