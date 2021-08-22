@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   before_action :join_room, only: [:show, :likes]
+  before_action :blocking_edit_test_user, only: [:edit, :update]
 
   def index
     @users = User.all.page(params[:page])
@@ -84,6 +85,10 @@ class UsersController < ApplicationController
   # 管理者かどうか確認
   def admin_user
     redirect_to(root_url) unless current_user.admin?
+  end
+
+  def blocking_edit_test_user
+    redirect_to root_path, alert: "ゲストユーザーのため編集できません" if current_user.email == "guest.user@guest.com"
   end
 
   def join_room
