@@ -1,7 +1,9 @@
 <div class="wrapper">
   <div class="login">
     <div class="login__field">
-      
+      <div class="center">
+        <%= render 'sessions/testuser'%>
+      </div>
     </div>
     <%= form_with(model: @user, local: true) do |f| %>
       <div class="center">
