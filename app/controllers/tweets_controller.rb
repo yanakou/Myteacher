@@ -7,7 +7,7 @@ class TweetsController < ApplicationController
 
 
   def index
-    @tweets = Tweet.all.page(params[:page]).per(10)
+    @tweets = Tweet.includes(%i[taggings user]).order('created_at desc').page(params[:page]).per(10)
     @tweets = @tweets.tagged_with(params[:tag_name].to_s) if params[:tag_name]
   end
 
