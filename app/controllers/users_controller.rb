@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :timeline]
-  before_action :set_user, only: [:show, :edit, :update, :likes, :following, :followers]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :logged_in_user, only: %i[index edit update destroy timeline]
+  before_action :set_user, only: %i[show edit update likes following followers]
+  before_action :correct_user, only: %i[edit update]
   before_action :admin_user, only: :destroy
-  before_action :join_room, only: [:show, :likes]
-  before_action :blocking_edit_test_user, only: [:edit, :update]
+  before_action :join_room, only: %i[show likes]
+  before_action :blocking_edit_test_user, only: %i[edit update]
 
   def index
     @users = User.all.page(params[:page])
@@ -29,8 +29,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
@@ -74,7 +73,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password,
-                            :password_confirmation, :avatar)
+                                 :password_confirmation, :avatar)
   end
 
   def correct_user
@@ -93,18 +92,18 @@ class UsersController < ApplicationController
 
   def join_room
     if logged_in?
-      @currentUserEntry = Entry.where(user_id: current_user.id)
-      @userEntry = Entry.where(user_id: @user.id)
+      @current_user_entry = Entry.where(user_id: current_user.id)
+      @user_entry = Entry.where(user_id: @user.id)
       unless @user.id == current_user.id
-        @currentUserEntry.each do |cu|
-          @userEntry.each do |u|
+        @current_user_entry.each do |cu|
+          @user_entry.each do |u|
             if cu.room_id == u.room_id
-              @haveRoom = true
-              @roomId = cu.room_id
+              @have_room = true
+              @room_id = cu.room_id
             end
           end
         end
-        unless @haveRoom
+        unless @have_room
           @room = Room.new
           @entry = Entry.new
         end

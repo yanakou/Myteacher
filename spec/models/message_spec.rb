@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Message, type: :model do
-  let(:message){create(:message)}
+  let(:message) { create(:message) }
   describe "#create" do
     context "保存できる場合" do
       it "全てのパラメーターが揃っていれば保存できる" do

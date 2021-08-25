@@ -7,8 +7,8 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.create
-    @joinCurrentUser = Entry.create(user_id: current_user.id, room_id: @room.id)
-    @joinUser = Entry.create(join_room_params)
+    @join_current_user = Entry.create(user_id: current_user.id, room_id: @room.id)
+    @join_user = Entry.create(join_room_params)
     @first_message = @room.messages.create(user_id: current_user.id, message: "初めまして！")
     redirect_to room_path(@room.id)
   end
@@ -16,17 +16,17 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
-        @messages = @room.messages.includes(:user).order("created_at asc")
-        @message = Message.new
-        @entries = @room.entries
+      @messages = @room.messages.includes(:user).order("created_at asc")
+      @message = Message.new
+      @entries = @room.entries
     else
-        redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_path)
     end
   end
 
   private
-  def join_room_params
-      params.require(:entry).permit(:user_id, :room_id).merge(room_id: @room.id)
-  end
 
+  def join_room_params
+    params.require(:entry).permit(:user_id, :room_id).merge(room_id: @room.id)
+  end
 end

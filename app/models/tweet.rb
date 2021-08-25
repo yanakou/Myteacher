@@ -6,18 +6,18 @@ class Tweet < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   # notifications -------------------------------------------------------------------
   has_many :notifications, dependent: :destroy
-  
+
   validates :user_id, presence: true
   validates :text, presence: true, length: { maximum: 1500 }
   validates :title, presence: true, length: { maximum: 40 }
 
   # 表示を降順にする
   default_scope -> { order(created_at: :desc) }
-  
+
   # imageカラムに画像のurlを格納するよう指定
   mount_uploader :image, ImageUploader
 
-  #既にいいねしているか確認するメソッド
+  # 既にいいねしているか確認するメソッド
   def like_user(user_id)
     likes.find_by(user_id: user_id)
   end
@@ -30,7 +30,7 @@ class Tweet < ApplicationRecord
       Tweet.all
     end
   end
-  
+
   def create_notification_like!(current_user)
     # 既にいいねされてるか検索
     temp = Notification.where(["visitor_id = ? and visited_id = ? and tweet_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
@@ -46,7 +46,7 @@ class Tweet < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-  
+
   def create_notification_comment!(current_user, comment_id)
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
     temp_ids = Comment.select(:user_id).where(tweet_id: id).where.not(user_id: current_user.id).distinct
@@ -69,7 +69,7 @@ class Tweet < ApplicationRecord
     notification.checked = true if notification.visitor_id == notification.visited_id
     notification.save if notification.valid?
   end
-  
+
   # ActAsTaggable-------------------------------------------------------------------
   acts_as_taggable
 end

@@ -25,5 +25,4 @@ FactoryBot.define do
     # user
     association :user, factory: :user3
   end
-
 end

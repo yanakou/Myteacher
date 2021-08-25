@@ -4,7 +4,7 @@ RSpec.describe "ユーザー一覧ページ", type: :feature do
   before do
     @admin = create(:user)
     @non_admin = create(:user2)
-    30.times{FactoryBot.create(:users)}
+    30.times { FactoryBot.create(:users) }
   end
 
   context "管理者としてログイン" do
@@ -18,13 +18,11 @@ RSpec.describe "ユーザー一覧ページ", type: :feature do
       first_page_of_users = User.all.page(1)
       first_page_of_users.each do |user|
         expect(page).to have_link user.name, href: user_path(user)
-        unless user == @admin
-        expect(page).to have_link '削除', href: user_path(user)
-        end
+        expect(page).to have_link '削除', href: user_path(user) unless user == @admin
       end
       expect do
         click_link '削除', href: user_path(@non_admin)
-      end.to change{User.count}.by(-1)
+      end.to change { User.count }.by(-1)
     end
   end
 
@@ -35,9 +33,7 @@ RSpec.describe "ユーザー一覧ページ", type: :feature do
       fill_in 'session[password]', with: '000000'
       click_button 'ログイン'
       visit users_path
-      expect(page).to have_link '削除', count:0
+      expect(page).to have_link '削除', count: 0
     end
   end
-
-
 end

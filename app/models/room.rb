@@ -17,5 +17,4 @@ class Room < ApplicationRecord
       notification.save
     end
   end
-  
 end

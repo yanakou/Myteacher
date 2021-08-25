@@ -9,9 +9,9 @@ RSpec.describe "Sessions", type: :request do
   end
 
   describe 'POST #create' do
-    let!(:user2){create(:user2)}
-    let(:params){{session: {email: user2.email, password: '000000'}}}
-    let(:invalid_params){{session: {email: 'invalid@example.com', password: '000000'}}}
+    let!(:user2) { create(:user2) }
+    let(:params) { { session: { email: user2.email, password: '000000' } } }
+    let(:invalid_params) { { session: { email: 'invalid@example.com', password: '000000' } } }
 
     context 'パラメータが妥当な場合' do
       it 'リクエストが成功すること' do

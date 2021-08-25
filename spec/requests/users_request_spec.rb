@@ -14,7 +14,7 @@ RSpec.describe "Users", type: :request do
 
     it 'ユーザー名が表示されていること' do
       get users_path
-      expect(response.body).to include ("user2")
+      expect(response.body).to include("user2")
     end
   end
 
@@ -31,11 +31,11 @@ RSpec.describe "Users", type: :request do
 
     it 'ユーザー名が表示されていること' do
       get user_path(@user2.id)
-      expect(response.body).to include ("user2")
+      expect(response.body).to include("user2")
     end
 
     context 'ユーザーが存在しない場合' do
-      subject { -> { get user_path 1} }
+      subject { -> { get user_path 1 } }
 
       it { is_expected.to raise_error ActiveRecord::RecordNotFound }
     end
@@ -174,10 +174,6 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-
-
-
-
   # before do
   #   @user = create(:user)
   #   @other_user = create(:user2)
@@ -241,7 +237,7 @@ RSpec.describe "Users", type: :request do
   #   context "管理者でないユーザーがログイン" do
   #     it "admin属性を変更できないこと" do
   #       log_in_as(@other_user)
-  #       expect(@other_user.admin?).to be_falsey 
+  #       expect(@other_user.admin?).to be_falsey
   #       patch user_path(@other_user), params: {user: { password: '000000',
   #                                           password_confirmation: '000000',
   #                                           admin: true } }
@@ -263,12 +259,11 @@ RSpec.describe "Users", type: :request do
   #   context "管理者でないユーザーがログイン" do
   #     it "ユーザーの削除に失敗し、ログインページにリダイレクトすること" do
   #       log_in_as(@other_user)
-  #       expect do 
+  #       expect do
   #         delete user_path(@user)
   #       end.to_not change{User.count}
   #       expect(response).to redirect_to root_url
   #     end
   #   end
   # end
-
 end

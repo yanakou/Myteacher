@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_tweet, only: [:create, :edit, :update, :destroy]
-  before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :set_tweet, only: %i[create edit update destroy]
+  before_action :set_comment, only: %i[edit update destroy]
 
   def create
     @comment = @tweet.comments.create(comment_params)
@@ -8,25 +8,21 @@ class CommentsController < ApplicationController
       @tweet.create_notification_comment!(current_user, @comment.id)
       @comment = Comment.new
     end
-    get_all_comments
+    gets_all_comments
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @comment.update(comment_params)
-    get_all_comments
+    gets_all_comments
     # if @comment.update(comment_params)
-    #     get_all_comments
+    #     gets_all_comments
     # end
   end
 
-
   def destroy
-    if @comment.destroy
-        get_all_comments
-    end
+    gets_all_comments if @comment.destroy
   end
 
   private
@@ -39,7 +35,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
-  def get_all_comments
+  def gets_all_comments
     @comments = @tweet.comments.includes(:user).order('created_at asc')
   end
 

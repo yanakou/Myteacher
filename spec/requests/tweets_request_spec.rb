@@ -13,12 +13,12 @@ RSpec.describe "Tweets", type: :request do
 
     it 'titleが表示されていること' do
       get tweets_path
-      expect(response.body).to include ("tweet1")
+      expect(response.body).to include("tweet1")
     end
   end
 
   describe 'GET #show' do
-    let(:tweet1){create(:tweet1)}
+    let(:tweet1) { create(:tweet1) }
 
     it 'リクエストが成功すること' do
       get tweet_path(tweet1.id)
@@ -27,11 +27,11 @@ RSpec.describe "Tweets", type: :request do
 
     it 'title名が表示されていること' do
       get tweet_path(tweet1.id)
-      expect(response.body).to include ("tweet1")
+      expect(response.body).to include("tweet1")
     end
 
     context 'tweetが存在しない場合' do
-      subject { -> { get tweet_path 1} }
+      subject { -> { get tweet_path 1 } }
 
       it { is_expected.to raise_error ActiveRecord::RecordNotFound }
     end
@@ -61,7 +61,6 @@ RSpec.describe "Tweets", type: :request do
         expect(response).to redirect_to login_url
       end
     end
-
   end
 
   describe 'GET #edit' do
@@ -103,7 +102,7 @@ RSpec.describe "Tweets", type: :request do
 
   describe 'POST #create' do
     context 'ログインしている場合' do
-      let(:user2){create(:user2)}
+      let(:user2) { create(:user2) }
 
       before do
         log_in_as(user2)
@@ -132,15 +131,15 @@ RSpec.describe "Tweets", type: :request do
           post tweets_path, params: { tweet: FactoryBot.attributes_for(:tweet1, title: nil) }
           expect(response.status).to eq 200
         end
-  
+
         it '投稿が完了しないこと' do
           expect do
             post tweets_path, params: { tweet: FactoryBot.attributes_for(:tweet1, title: nil) }
           end.to_not change(Tweet, :count)
         end
-  
+
         it 'エラーが表示されること' do
-          post tweets_path, params: { tweet: FactoryBot.attributes_for(:tweet1, title: "a"*41 ) }
+          post tweets_path, params: { tweet: FactoryBot.attributes_for(:tweet1, title: "a" * 41) }
           expect(response.body).to include 'Titleは40文字以内で入力してください'
         end
       end
@@ -166,7 +165,6 @@ RSpec.describe "Tweets", type: :request do
         @user2 = @tweet1.user
         log_in_as(@user2)
       end
-      
 
       context 'パラメータが妥当な場合' do
         it 'リクエストが成功すること' do
@@ -199,7 +197,7 @@ RSpec.describe "Tweets", type: :request do
         end
 
         it 'エラーが表示されること' do
-          put tweet_path(@tweet1.id), params: { tweet: FactoryBot.attributes_for(:tweet2, title: "a"*41 ) }
+          put tweet_path(@tweet1.id), params: { tweet: FactoryBot.attributes_for(:tweet2, title: "a" * 41) }
           expect(response.body).to include 'Titleは40文字以内で入力してください'
         end
       end
@@ -264,8 +262,6 @@ RSpec.describe "Tweets", type: :request do
     end
   end
 
-
-  
   # context "非ログイン時" do
   #   it "newアクション送信後、ログインページにリダイレクトすること" do
   #     get new_tweet_path
@@ -286,7 +282,4 @@ RSpec.describe "Tweets", type: :request do
   #     expect(response).to redirect_to login_url
   #   end
   # end
-
-  
-  
 end

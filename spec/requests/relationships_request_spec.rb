@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Relationships", type: :request do
-  let!(:user){create(:user)}
+  let!(:user) { create(:user) }
   before do
     log_in_as(user)
   end

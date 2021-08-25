@@ -1,0 +1,80 @@
+inherit_from: .rubocop_todo.yml
+
+
+AllCops:
+  SuggestExtensions: false
+  # 除外するディレクトリ（自動生成されたファイル）
+  # デフォルト設定にある"vendor/**/*"が無効化されないように記述
+  Exclude:
+    - "bin/*"
+    - "lib/*"
+    - "node_modules/**/*"
+    - "db/**/*"
+    - "vendor/**/*"
+    - "config/**/*"
+    - "script/**/*"
+    - "test/**"
+    - "docker/rails/puma.rb" # app_rootのディレクトリを変えてはいけないため
+  # Rails向けのRails copsを実行。"rubocop -R"と同じ
+  Rails:
+    enabled: true
+
+# "Missing top-level class documentation comment."を無効
+Style/Documentation:
+  Enabled: false
+
+# コメントにはアスキー記号のみを使用してください
+AsciiComments:
+  Enabled: false
+
+# "Prefer single-quoted strings when you don't need string interpolation or special symbols."を無効
+Style/StringLiterals:
+  Enabled: false
+
+# "Line is too long"を無効
+Metrics/LineLength:
+  Enabled: false
+
+# join_roomの記述が引っかかる為。省略は難しい
+Etrics/MethodLength:
+  Enabled: true
+  Max: 18
+
+#'frozen_string_literal: true'を無効
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# tweet_searchやtestのnamespaceが引っかかるため
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# 線が多い長いブロックは避けてください
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+
+# NotificationsControllerが22文字の為
+Metrics/AbcSize:
+  Enabled: true
+  Max: 23
+
+# if~else~endの方がひと目で分かりやすいと思うためfalse。詳細は以下を参照
+# https://docs.rubocop.org/rubocop/cops_style.html#styleguardclause
+Style/GuardClause:
+  Enabled: false
+
+
+Naming/HeredocDelimiterNaming:
+  Enabled: false
+
+# テストコードを追加したら、tweetなどの変数名が規約違反で引っかかるため無効
+Lint/UselessAssignment:
+  Enabled: false
+
+# image, avatar_uploader.rb内で文字列の連結についてエラーが出るので無効
+Style/StringConcatenation:
+  Enabled: false
+
+# emailの正規表現で、定数をフリーズするようエラーが出るので無効
+Style/MutableConstant:
+  Enabled: false
