@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Messages", type: :request do
-  let!(:user){create(:user)}
-    before do
-      log_in_as(user)
-    end
+  let!(:user) { create(:user) }
+  before do
+    log_in_as(user)
+  end
 
   describe 'POST #create' do
     context 'パラメータが妥当な場合' do
@@ -42,13 +42,13 @@ RSpec.describe "Messages", type: :request do
     end
 
     it 'リクエストが成功すること' do
-      delete message_path(@message.id), xhr: true, params: {message: {room_id: @message.room_id}}
+      delete message_path(@message.id), xhr: true, params: { message: { room_id: @message.room_id } }
       expect(response.status).to eq 200
     end
 
     it 'メッセージが削除されること' do
       expect do
-        delete message_path(@message.id), xhr: true, params: {message: {room_id: @message.room_id}}
+        delete message_path(@message.id), xhr: true, params: { message: { room_id: @message.room_id } }
       end.to change(Message, :count).by(-1)
     end
   end

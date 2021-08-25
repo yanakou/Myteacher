@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Rooms", type: :request do
   describe 'GET #index' do
-    let(:user){create(:user)}
+    let(:user) { create(:user) }
     context 'ログインしている場合' do
       before do
         log_in_as(user)
@@ -15,7 +15,7 @@ RSpec.describe "Rooms", type: :request do
 
       it '「メッセージ」と表示されていること' do
         get rooms_path
-        expect(response.body).to include ("メッセージ")
+        expect(response.body).to include("メッセージ")
       end
     end
 
@@ -34,7 +34,7 @@ RSpec.describe "Rooms", type: :request do
 
   describe 'POST #create' do
     context 'ログインしている場合' do
-      let(:user){create(:user)}
+      let(:user) { create(:user) }
       before do
         log_in_as(user)
       end
@@ -65,8 +65,8 @@ RSpec.describe "Rooms", type: :request do
   end
 
   describe 'GET #show' do
-    let!(:user){create(:user)}
-    let!(:user2){create(:user2)}
+    let!(:user) { create(:user) }
+    let!(:user2) { create(:user2) }
 
     context 'ログインしている場合' do
       before do

@@ -50,7 +50,7 @@ RSpec.describe Comment, type: :model do
     let(:association) do
       described_class.reflect_on_association(target)
     end
-    
+
     context "Userモデルとのアソシエーション" do
       let(:target) { :user }
       it "Userとの関連付けはbelongs_toであること" do

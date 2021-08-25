@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  let(:like){create(:like)}
+  let(:like) { create(:like) }
   describe "#create" do
     context "保存できる場合" do
       it "user_idとtweet_idがあれば保存できる" do

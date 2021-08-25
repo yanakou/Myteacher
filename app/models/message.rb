@@ -5,5 +5,4 @@ class Message < ApplicationRecord
   validates :message, presence: true, length: { maximum: 1000 }
 
   has_many :notifications, dependent: :destroy
-
 end

@@ -1,10 +1,8 @@
 class TweetsController < ApplicationController
-  before_action :logged_in_user, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_tweet, only: [:edit, :destroy, :show, :update]
-  before_action :blocking_edit_tweet, only: [:edit, :update, :destroy]
-  before_action :set_available_tags_to_gon, only: [:new, :edit]
-
-
+  before_action :logged_in_user, only: %i[new create edit update destroy]
+  before_action :set_tweet, only: %i[edit destroy show update]
+  before_action :blocking_edit_tweet, only: %i[edit update destroy]
+  before_action :set_available_tags_to_gon, only: %i[new edit]
 
   def index
     @tweets = Tweet.includes(%i[taggings user]).order('created_at desc').page(params[:page]).per(10)
@@ -27,7 +25,7 @@ class TweetsController < ApplicationController
   end
 
   def edit
-    gon.tweet_tags = @tweet.tag_list 
+    gon.tweet_tags = @tweet.tag_list
   end
 
   def update
@@ -54,13 +52,13 @@ class TweetsController < ApplicationController
   def likes
     @tweets = Tweet.includes(%i[taggings user]).order('likes_count desc').page(params[:page]).per(10)
   end
-  
+
   def tags
     @tags = Tweet.includes(:taggings).tag_counts_on(:tags)
   end
-  
+
   private
-  
+
   def tweet_params
     params.require(:tweet).permit(:title, :text, :image, :tag_list).merge(user_id: current_user.id)
   end
@@ -76,5 +74,4 @@ class TweetsController < ApplicationController
   def set_available_tags_to_gon
     gon.available_tags = Tweet.includes(:taggings).tags_on(:tags).pluck(:name)
   end
-
 end

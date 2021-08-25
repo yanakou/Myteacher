@@ -30,7 +30,6 @@ RSpec.describe Tweet, type: :model do
         expect(@tweet).not_to be_valid
       end
 
-
       it "textが空の場合は保存できない" do
         @tweet = build(:tweet, text: nil)
         expect(@tweet).not_to be_valid
@@ -47,7 +46,7 @@ RSpec.describe Tweet, type: :model do
       end
     end
   end
-  
+
   describe "#search" do
     # 各テストの前にTweetを作成
     before do

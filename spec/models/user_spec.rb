@@ -28,7 +28,6 @@ RSpec.describe User, type: :model do
       end
     end
 
-    
     context 'userが保存できない場合' do
       it "nameがない場合は登録できない" do
         @user.name = ""
@@ -93,17 +92,17 @@ RSpec.describe User, type: :model do
 
     describe 'フォーマットの検証' do
       it "emailのフォーマットが正しい場合、有効である" do
-        valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org 
-                            first.last@foo.jp alice+bob@baz.cn]
+        valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
+                             first.last@foo.jp alice+bob@baz.cn]
         valid_addresses.each do |valid_address|
           @user.email = valid_address
           expect(@user).to be_valid, "#{valid_address.inspect} should be valid"
         end
       end
-  
+
       it "emailのフォーマットが正しくない場合、無効である" do
-        invalid_addresses = %w[user@example,com user_at_foo.org user.name@example. 
-                            foo@bar_baz.com foo@bar+baz.com]
+        invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.
+                               foo@bar_baz.com foo@bar+baz.com]
         invalid_addresses.each do |invalid_address|
           @user.email = invalid_address
           expect(@user).not_to be_valid, "#{invalid_address.inspect} should be invalid"
@@ -116,7 +115,7 @@ RSpec.describe User, type: :model do
       @tweet = create(:tweet)
       expect do
         @tweet.user.destroy
-      end.to change{Tweet.count}.by(-1)
+      end.to change { Tweet.count }.by(-1)
     end
   end
 end
