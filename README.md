@@ -1,24 +1,10 @@
-# README
+# [MyTeacher](https://yana-portfolio.herokuapp.com/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# アプリ概要
+就職活動用のポートフォリオとして開発した個人アプリです。
+人見知りの人に改善する方法を提案したり、独自のタグをつけて意見の投稿ができるアプリです。
+何か目標に向けて頑張る人と、その人たちを応援したい人が繋がることができるアプリです。
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- ユーザー登録することで記事を投稿・編集・削除できる
+- 投稿に対していいね、コメントができる機能を実装
+- ユーザー間のコミュニケーションを促すために、フォロー・通知・ダイレクトメッセージ機能を実装
