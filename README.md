@@ -22,3 +22,18 @@
 - 通知機能
 - 活動履歴の保存機能
 - テスト機能
+
+# 使用技術等
+* フロントエンド：HTML JavaScript（jQuery）
+* バックエンド：Ruby（Ruby on Rails）
+    * テスト：RSpec
+    * 静的コード解析：Rubocop
+* データベース：MySQL
+* インフラ：AWS（VPC | ALB | EC2 | S3 | Route53 | ACM）
+* ソースコード管理：GitHub
+* Webサーバ：Nginx
+* アプリケーションサーバ：Unicorn
+* 開発環境：Docker　Nginx、Rails、MySQLコンテナを用意して、docker-composeで起動します。
+* CI/CD：CircleCI 
+    * CI：プルリク発行時にrubucopとRSpecが自動で実行されます。
+    * CD：GitHubのマスターブランチにマージされた時のみcapistranoが実行して自動デプロイされます。
