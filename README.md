@@ -1,24 +1,102 @@
-# README
+# [MyTeacher](https://yana-portfolio.herokuapp.com/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# アプリ概要
+就職活動用のポートフォリオとして開発した個人アプリです。
+何か目標に向けて頑張る人と、その人たちを応援したい人が繋がることができるアプリです。
 
-Things you may want to cover:
+- ユーザー登録することで記事を投稿・編集・削除できる
+- 投稿に対していいね、コメントができる機能を実装
+- ユーザー間のコミュニケーションを促すために、フォロー・通知・ダイレクトメッセージ機能を実装
 
-* Ruby version
+# 機能一覧
+- ユーザー機能
+- 管理者権限
+- 記事機能
+- タグ付け機能
+- コメント機能
+- いいね機能
+- フォロー機能
+- ページネーション機能
+- 検索機能
+- ダイレクトメッセージ機能
+- 通知機能
+- 活動履歴の保存機能
+- テスト機能
 
-* System dependencies
+# 使用技術等
+* フロントエンド：HTML JavaScript（jQuery）
+* バックエンド：Ruby（Ruby on Rails）
+    * テスト：RSpec
+    * 静的コード解析：Rubocop
+* データベース：MySQL
+* インフラ：AWS（VPC | ALB | EC2 | S3 | Route53 | ACM）
+* ソースコード管理：GitHub
+* Webサーバ：Nginx
+* アプリケーションサーバ：Unicorn
+* 開発環境：Docker　Nginx、Rails、MySQLコンテナを用意して、docker-composeで起動します。
+* CI/CD：CircleCI 
+    * CI：プルリク発行時にrubucopとRSpecが自動で実行されます。
+    * CD：GitHubのマスターブランチにマージされた時のみcapistranoが実行して自動デプロイされます。
 
-* Configuration
+# アプリのポイント
+- **RSpecを使用して、テストコード数が200件以上あります**
+- 静的解析ツールRubocopを導入してコードの品質を担保
+- 管理者機能を導入して本番運用を意識
+- タグ入力時に自動補完機能を導入
+- 完全に独学で開発
+- 主要機能をajaxで実装（いいね、フォローなど）
+- 直感的に分かるデザイン
+- 開発環境でDockerを採用することでスムーズにチーム開発が可能
 
-* Database creation
+# 機能詳細
+## ユーザー機能
+  - 新規登録、ログイン、ログアウト、編集機能
+  - かんたんログイン機能
+  - 管理者ユーザー機能
+  - ユーザーの一覧表示
+  
+## 管理者権限
+  - 権限を持ったユーザーは、不快な記事やコメントを削除できる
 
-* Database initialization
+## 記事機能
+  - 記事一覧表示、記事詳細表示、記事投稿、記事編集、記事削除機能
+  - 画像のアップロードはcarrierwaveというgemを使用
 
-* How to run the test suite
+## ページネーション機能
+  - kaminariというgemを使用
 
-* Services (job queues, cache servers, search engines, etc.)
+## タグ付け機能
+  - acts_as_taggableというgemと、jQueryプラグインのtag-itを使用
+  - 記事に複数のタグをつけられる機能
+  - タグ名は自由に入力可能
+  - 入力時に自動補完機能付き（gonというgemを使用）
 
-* Deployment instructions
+## コメント機能（ajax）
+  - 記事ごとのコメント表示、コメント投稿、コメント編集、コメント削除機能
 
-* ...
+## いいね機能（ajax）
+  - 記事にいいねした人の一覧表示
+  - ユーザーがいいねした記事の一覧表示
+  - 人気順表示機能
+
+## フォロー機能（ajax）
+  - フォロー、フォロワー一覧表示機能
+  - タイムライン機能
+
+## 検索機能
+  - 投稿記事の内容を検索
+  - タイトルと本文の曖昧検索
+
+## ダイレクトメッセージ機能
+  - 1：1のチャットルームを作成
+  - メッセージ送信、メッセージ削除機能（ajax）
+
+## 通知機能
+  - いいね、コメント、フォロー、ダイレクトメッセージを受信したら通知
+  - 未読通知があるとお知らせを表示
+
+## 活動履歴の保存機能
+  - いいね、コメント、フォロー、ダイレクトメッセージを送信した履歴を確認可能
+
+## テスト機能
+  - RSpecを使用（テスト件数は200以上）
