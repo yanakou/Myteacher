@@ -101,3 +101,12 @@
 
 ## テスト機能
   - RSpecを使用（テスト件数は200以上）
+
+# 使用した主なgem
+* kaminari ：ページネーション機能
+* carrierwave：画像投稿
+* act-as-taggalbe-on：タグ機能
+* gon：タグ入力時の自動補完機能
+* rspec-rails ：テストコード
+* factory_bot_rails ：テストデータ作成
+* faker ：ダミーデータ作成
