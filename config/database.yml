@@ -49,7 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: <%= ENV['DB_NAME'] %> 
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
-  host: us-cdbr-east-02.clear
+  database: Myteacher_production
+  username: root
+  password: White-stone0207
