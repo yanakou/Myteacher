@@ -66,6 +66,14 @@ group :development do
   # rubocop
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
+  # capisstranoの導入
+  gem "capistrano", "~> 3.10", require: false
+  gem "capistrano-rails", "~> 1.6", require: false
+  gem 'capistrano-rbenv', '~> 2.2'
+  gem 'capistrano-rbenv-vars', '~> 0.1'
+  gem 'capistrano3-puma'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :production do
