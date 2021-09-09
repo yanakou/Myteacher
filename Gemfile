@@ -49,6 +49,11 @@ group :development, :test do
   gem 'factory_bot_rails'
   # render_templateを使うために必要
   gem 'rails-controller-testing'
+  # capistranoの導入
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
 end
 
 group :test do
@@ -66,17 +71,13 @@ group :development do
   # rubocop
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
-  # capistranoの導入
-  gem "capistrano", "~> 3.10", require: false
-  gem "capistrano-rails", "~> 1.6", require: false
-  gem 'capistrano-rbenv', '~> 2.2'
-  gem 'capistrano-rbenv-vars', '~> 0.1'
-  gem 'capistrano3-puma'
-  gem 'ed25519'
-  gem 'bcrypt_pbkdf'
 end
 
 group :production do
+end
+
+group :production, :staging do
+  gem 'unicorn'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
