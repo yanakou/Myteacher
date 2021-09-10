@@ -49,11 +49,6 @@ group :development, :test do
   gem 'factory_bot_rails'
   # render_templateを使うために必要
   gem 'rails-controller-testing'
-  # capistranoの導入
-  gem 'capistrano'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
 end
 
 group :test do
@@ -71,6 +66,12 @@ group :development do
   # rubocop
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
+  # capistranoの導入
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
 end
 
 group :production do
