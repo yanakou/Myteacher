@@ -1,6 +1,5 @@
 server "35.76.155.83", user: "kosuke", roles: %w{app db web}
 
-set :ssh_options, keys: '~/.ssh/myt_key_rsa'
 
 # server-based syntax
 # ======================
