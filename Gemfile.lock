@@ -66,6 +66,7 @@ GEM
     autoprefixer-rails (10.3.3.0)
       execjs (~> 2)
     bcrypt (3.1.13)
+    bcrypt_pbkdf (1.1.0)
     bindex (0.8.1)
     bootsnap (1.8.1)
       msgpack (~> 1.0)
@@ -112,6 +113,7 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
+    ed25519 (1.2.4)
     erubi (1.10.0)
     execjs (2.8.1)
     factory_bot (6.2.0)
@@ -320,6 +322,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 6.0)
   bcrypt (= 3.1.13)
+  bcrypt_pbkdf
   bootsnap (>= 1.4.2)
   bootstrap-sass (= 3.4.1)
   byebug
@@ -331,6 +334,7 @@ DEPENDENCIES
   capybara
   carrierwave
   dotenv-rails
+  ed25519
   factory_bot_rails
   faker (= 2.1.2)
   gon
