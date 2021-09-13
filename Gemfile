@@ -104,3 +104,6 @@ gem 'gon'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
+
+gem 'ed25519'
+gem 'bcrypt_pbkdf'
