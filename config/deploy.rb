@@ -8,7 +8,8 @@ set :application, "Myteacher"
 set :repo_url, "git@github.com:yanakou/Myteacher.git"
 
 # sharedディレクトリに入れるファイルを指定
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "node_modules"
+append :linked_files, "config/master.key"
 
 # SSH接続設定
 set :ssh_options, {
