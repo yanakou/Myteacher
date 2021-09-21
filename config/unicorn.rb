@@ -1,20 +1,23 @@
 # set lets
 $worker  = 2
 $timeout = 30
-$app_dir = "/var/www/Myteacher"
+$app_dir = File.expand_path('../../../', __FILE__)
 $listen  = File.expand_path 'tmp/sockets/.unicorn.sock', $app_dir
 $pid     = File.expand_path 'tmp/pids/unicorn.pid', $app_dir
 $std_log = File.expand_path 'log/unicorn.log', $app_dir
+
 # set config
 worker_processes  $worker
 working_directory "#{$app_dir}/current"
-stderr_path "#{$app_dir}/shared/log/unicorn.log"
-stdout_path "#{$app_dir}/shared/log/unicorn.log"
+stderr_path "#{$app_dir}/shared/log/unicorn.stderr.log"
+stdout_path "#{$app_dir}/shared/log/unicorn.stdout.log"
 timeout $timeout
 listen  "#{$app_dir}/shared/tmp/sockets/unicorn.sock"
 pid "#{$app_dir}/shared/tmp/pids/unicorn.pid"
+
 # loading booster
 preload_app true
+
 # before starting processes
 before_fork do |server, worker|
   defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
@@ -26,6 +29,7 @@ before_fork do |server, worker|
     end
   end
 end
+
 # after finishing processes
 after_fork do |server, worker|
   defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection

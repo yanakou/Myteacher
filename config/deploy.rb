@@ -24,7 +24,7 @@ set :keep_releases, 5
 set :rbenv_type, :user
 set :rbenv_ruby, '2.6.5'
 
-# ここからUnicornの設定
+# Unicornの設定----------------------------------------------------
 # Unicornのプロセスの指定
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
 
