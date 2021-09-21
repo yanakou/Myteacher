@@ -9,8 +9,8 @@ $std_log = File.expand_path 'log/unicorn.log', $app_dir
 # set config
 worker_processes  $worker
 working_directory "#{$app_dir}/current"
-stderr_path "#{$app_dir}/shared/log/unicorn.log"
-stdout_path "#{$app_dir}/shared/log/unicorn.log"
+stderr_path "#{$app_dir}/shared/log/unicorn.stderr.log"
+stdout_path "#{$app_dir}/shared/log/unicorn.stdout.log"
 timeout $timeout
 listen  "#{$app_dir}/shared/tmp/sockets/unicorn.sock"
 pid "#{$app_dir}/shared/tmp/pids/unicorn.pid"
