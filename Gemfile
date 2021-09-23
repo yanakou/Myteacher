@@ -90,6 +90,9 @@ gem 'kaminari'
 # 画像アップロード
 gem 'carrierwave'
 
+# S3へのアップロード
+gem 'fog-aws'
+
 # 画像のリサイズ
 gem 'mini_magick'
 
