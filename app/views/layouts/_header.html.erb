@@ -46,7 +46,7 @@
     </div>
     <div class="header-bottom">
       <ul class="header-bottom__list">
-        <% @tags = ["英会話","TOEIC","中国語","宅建","簿記","FP","危険物取扱者","フランス語"] %>
+        <% @tags = ["英会話","TOEIC","中国語","宅建","簿記","FP","危険物取扱者","登録販売者"] %>
         <% @tags.each do |tag| %>
           <li class="header-bottom__list__item">
             <%= link_to tag, tweets_path(tag_name: tag), class: "header-bottom__list--name" %>
