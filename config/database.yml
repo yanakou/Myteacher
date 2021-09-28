@@ -21,7 +21,7 @@ development:
   <<: *default
   socket: /tmp/mysql.sock
   database: myteacher_development
-  host: db
+  
     
 test:
   <<: *default
