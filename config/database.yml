@@ -17,25 +17,28 @@ default: &default
   password: <%= ENV['DATABASE_DEV_PASSWORD'] %>
 
 # ローカル環境
-development:
-  <<: *default
-  socket: /tmp/mysql.sock
-  database: myteacher_development
-  
-    
-test:
-  <<: *default
-  socket: /tmp/mysql.sock
-  database: myteacher_test
-
-# Docker環境
 # development:
 #   <<: *default
-#   database: webapp_development
-
+#   socket: /tmp/mysql.sock
+#   database: myteacher_development
+  
+    
 # test:
 #   <<: *default
-#   database: webapp_test
+#   socket: /tmp/mysql.sock
+#   database: myteacher_test
+
+# Docker環境
+development:
+  <<: *default
+  database: webapp_development
+  username: root
+  password: password
+  host: db
+
+test:
+  <<: *default
+  database: webapp_test
 
   
 # Warning: The database defined as "test" will be erased and

@@ -19,6 +19,8 @@ services:
       - ./environments/db.env
     volumes:
       - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
   web:
     build:
       context: containers/nginx
