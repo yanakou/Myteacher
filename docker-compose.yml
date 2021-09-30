@@ -20,7 +20,7 @@ services:
     volumes:
       - db-data:/var/lib/mysql
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: password
   web:
     build:
       context: containers/nginx
