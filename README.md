@@ -1,5 +1,5 @@
 # [MyTeacher](https://myteacher-support.com/)
-https://mynote.world/
+https://myteacher-support.com/
 
 ゲストユーザーとしてログインすることができます。
 
