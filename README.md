@@ -113,7 +113,7 @@ https://mynote.world/
 * faker ：ダミーデータ作成
 
 # インフラ構成図
-![インフラ構成図](https://user-images.githubusercontent.com/63568678/135760560-366521ad-ae30-4915-92be-fab868051b78.png)
+![インフラ構成図 ver2](https://user-images.githubusercontent.com/63568678/135774522-6d1e4a9c-016c-4c84-a205-7dddbfd423dc.png)
 
 # DB設計
 <img width="1241" alt="データベース設計" src="https://user-images.githubusercontent.com/63568678/135774163-b6b45989-1a83-4353-9891-195b7f4f88b4.png">
