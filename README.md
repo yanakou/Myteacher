@@ -1,4 +1,7 @@
-# [MyTeacher](https://yana-portfolio.herokuapp.com/)
+# [MyTeacher](https://myteacher-support.com/)
+https://mynote.world/
+
+ゲストユーザーとしてログインすることができます。
 
 # アプリ概要
 就職活動用のポートフォリオとして開発した個人アプリです。
@@ -34,9 +37,7 @@
 * Webサーバ：Nginx
 * アプリケーションサーバ：Unicorn
 * 開発環境：Docker　Nginx、Rails、MySQLコンテナを用意して、docker-composeで起動します。
-* CI/CD：CircleCI 
-    * CI：プルリク発行時にrubucopとRSpecが自動で実行されます。
-    * CD：GitHubのマスターブランチにマージされた時のみcapistranoが実行して自動デプロイされます。
+* 自動デプロイツール：Capistrano  githubのmasterブランチをデプロイ
 
 # アプリのポイント
 - **RSpecを使用して、テストコード数が200件以上あります**
@@ -110,3 +111,6 @@
 * rspec-rails ：テストコード
 * factory_bot_rails ：テストデータ作成
 * faker ：ダミーデータ作成
+
+# インフラ構成図
+![インフラ構成図](https://user-images.githubusercontent.com/63568678/135760560-366521ad-ae30-4915-92be-fab868051b78.png)
