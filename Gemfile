@@ -68,10 +68,10 @@ group :development do
   gem 'rubocop-rails', require: false
   # capistranoの導入
   gem 'capistrano'
+  gem 'capistrano3-unicorn'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
-  gem 'capistrano3-unicorn'
 end
 
 group :production do
@@ -108,5 +108,5 @@ gem 'gon'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 
-gem 'ed25519'
 gem 'bcrypt_pbkdf'
+gem 'ed25519'
