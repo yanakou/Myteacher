@@ -21,7 +21,7 @@
   height: 135px;
   box-shadow: 0px 0px 5px;
   position: relative;
-  background-color: #faf0f0;
+  background-color: #e1f1fc;
   &-contents {
     max-width: 1000px;
     margin: 0 auto;
@@ -34,14 +34,15 @@
     &__left {
       padding-top: 25px;
       & h1 {
-        color: #333;
+        color: rgb(63, 63, 63);
       }
       &--title {
         font-size: 35px;
         font-weight: bold;
         font-family: serif;
+        text-shadow: 1px 2px 3px #808080;
         &:hover {
-          color: #333;
+          color: rgb(12, 12, 12);
         }
       }
     }
