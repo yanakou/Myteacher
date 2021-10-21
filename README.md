@@ -127,4 +127,4 @@ https://myteacher-support.com/
 ![インフラ構成図 ver2](https://user-images.githubusercontent.com/63568678/135774522-6d1e4a9c-016c-4c84-a205-7dddbfd423dc.png)
 
 # DB設計
-<img width="1241" alt="データベース設計" src="https://user-images.githubusercontent.com/63568678/135774163-b6b45989-1a83-4353-9891-195b7f4f88b4.png">
+![データベース ER 図](https://user-images.githubusercontent.com/63568678/138311929-fb710016-5f39-478a-9e54-79c471e8db42.jpeg)
