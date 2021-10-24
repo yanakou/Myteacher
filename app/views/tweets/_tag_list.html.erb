@@ -1,6 +1,6 @@
 <% tag_list.each do |tag| %>
   <%= link_to tweets_path(tag_name: tag), style: 'text-decoration: none;' do %>
-    <button type="button" class="btn btn-warning">
+    <button type="button" class="btn btn-outline-dark">
       <%= tag %>
     </button>
   <% end %>
